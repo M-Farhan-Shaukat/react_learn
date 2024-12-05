@@ -37,11 +37,11 @@ NavBar.prototype={
     searchPlaceholder:PropTypes.string,
     searchButtonName:PropTypes.string,
 }
-NavBar.defaultProps ={
-    title:"Title here",
-    about :"About here",
-    home: "Home",
-    searchPlaceholder:"Search....",
-    searchButtonName : "Search"
+// NavBar.defaultProps ={
+//     title:"Title here",
+//     about :"About here",
+//     home: "Home",
+//     searchPlaceholder:"Search....",
+//     searchButtonName : "Search"
     
-}
+// 
