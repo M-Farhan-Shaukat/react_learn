@@ -1,7 +1,9 @@
 import "./App.css";
 import NavBar from "./components/common/NavBar";
-import UserForm from "./components/users/UserForm";
-import UserTable from "./components/users/UserTable";
+// import AboutTextUtils from "./components/textUtils/AboutTextUtils";
+import TextForm from "./components/textUtils/TextForm";
+// import UserForm from "./components/users/UserForm";
+// import UserTable from "./components/users/UserTable";
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
     <div className="container my-5">
       {/* userform is imported and user table is commented until installation of react router */}
       {/* <UserTable /> */}
-      <UserForm />
+      {/* <UserForm /> */}
+      <TextForm />
+      {/* <AboutTextUtils /> */}
       </div>
 
     </>

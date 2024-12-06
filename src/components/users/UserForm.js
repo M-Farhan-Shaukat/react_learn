@@ -1,24 +1,112 @@
-import React from "react";
+import React, { useState } from "react";
 
 function UserForm() {
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    date_of_birth: '',
+    address: '',
+    city: '',
+    state: '',
+    district: '',
+    country:'',
+    linkedin_profile: '',
+    portfolio: '',
+    description: '',
+    objectives: '',
+    CNIC: '',
+    marital_status: '',
+    // education: [{ institute: '', degree: '', year_of_degree_start: '', year_of_degree_end: '', educational_achievements: '' }],
+    // job: [{ job_title: '', company_name: '', year_of_employment_start: '', year_of_employment_end: '', responsibilities: '', job_achievements: '' }],
+    // skills: [{ skill_type: '', skill_name: '' }],
+    // projects: [{ project_name: '', project_description: '', technologies_used: '', your_role: '' }],
+    // language: [{ language: '' }],
+    // reference: '',
+    // hobbies: [{ hobbies: '' }]
+  });
+  
+  const handleInputChange = (e) => {
+   
+    const { name, value } = e.target;
+    const nameParts = name.split('.'); // Handle nested fields using dot notation
+  
+    if (nameParts.length === 1) {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value
+      }));
+    } else {
+      // Check for valid object structure before accessing properties
+      const [parentKey, index, childKey] = nameParts;
+      if (formData[parentKey] && formData[parentKey][index]) {
+        setFormData((prevData) => {
+          const newData = [...prevData[parentKey]];
+          newData[index][childKey] = value;
+          return { ...prevData, [parentKey]: newData };
+        });
+      } else {
+        console.error(`Invalid field structure for name: ${name}`);
+      }
+    }
+    
+  }
+
+  const handleSelectChange = (event) => {
+    handleInputChange(event);
+  };
+
+  const handleNextClick=(e)=>{
+    e.preventDefault();
+    console.log(formData)
+  }
   return (
     <>
       <form className="row g-3">
         <div className="col-md-6">
           <label>Name</label>
-          <input type="text" name="name"className="form-control" id="inputName" />
+          <input
+            type="text"
+            name="name"
+            className="form-control"
+            id="inputName"
+            onChange={handleInputChange}
+            value={formData.name}
+          />
         </div>
         <div className="col-md-6">
           <label>Email</label>
-          <input type="email" name="email" className="form-control" id="inputEmail4" />
+          <input
+            type="email"
+            name="email"
+            className="form-control"
+            id="inputEmail4"
+            onChange={handleInputChange}
+            value={formData.email}
+          />
         </div>
         <div className="col-md-6">
           <label>Phone</label>
-          <input type="text" name="phone" className="form-control" id="inputPhone" />
+          <input
+            type="text"
+            name="phone"
+            className="form-control"
+            id="inputPhone"
+            onChange={handleInputChange}
+            value={formData.phone}
+          />
         </div>
         <div className="col-md-6">
           <label>Date of Birth</label>
-          <input type="date" name="date_of_birth"  className="form-control" id="date_of_birth" />
+          <input
+            type="date"
+            name="date_of_birth"
+            className="form-control"
+            id="date_of_birth"
+            onChange={handleInputChange}
+            value={formData.date_of_birth}
+          />
         </div>
         <div className="col-12">
           <label>Address</label>
@@ -28,23 +116,53 @@ function UserForm() {
             id="inputAddress"
             placeholder="1234 Main St"
             name="address"
+            onChange={handleInputChange}
+            value={formData.address}
           />
         </div>
         <div className="col-md-6">
           <label>City</label>
-          <input type="text" name="city" className="form-control" id="inputCity" />
+          <input
+            type="text"
+            name="city"
+            className="form-control"
+            id="inputCity"
+            onChange={handleInputChange}
+            value={formData.city}
+          />
         </div>
         <div className="col-md-6">
           <label>State</label>
-          <input type="text" name="state" className="form-control" id="inputState" />
+          <input
+            type="text"
+            name="state"
+            className="form-control"
+            id="inputState"
+            onChange={handleInputChange}
+            value={formData.state}
+          />
         </div>
         <div className="col-md-6">
           <label>District</label>
-          <input type="text" name="district" className="form-control" id="inputDistrict" />
+          <input
+            type="text"
+            name="district"
+            className="form-control"
+            id="inputDistrict"
+            onChange={handleInputChange}
+            value={formData.district}
+          />
         </div>
         <div className="col-md-6">
           <label>Country</label>
-          <input type="text" name="country" className="form-control" id="inputCountry" />
+          <input
+            type="text"
+            name="country"
+            className="form-control"
+            id="inputCountry"
+            onChange={handleInputChange}
+            value={formData.country}
+          />
         </div>
 
         <div className="col-md-6">
@@ -54,11 +172,20 @@ function UserForm() {
             className="form-control"
             id="inputLinkedInProfile"
             name="linkedin_profile"
+            onChange={handleInputChange}
+            value={formData.linkedin_profile}
           />
         </div>
         <div className="col-md-6">
           <label>Portfolio</label>
-          <input type="text" className="form-control" id="inputPortfolio" name="portfolio" />
+          <input
+            type="text"
+            className="form-control"
+            id="inputPortfolio"
+            name="portfolio"
+            onChange={handleInputChange}
+            value={formData.portfolio}
+          />
         </div>
 
         <div className="col-12">
@@ -67,8 +194,9 @@ function UserForm() {
             className="form-control"
             id="description"
             rows={3}
-            defaultValue={""}
             name="description"
+            onChange={handleInputChange}
+            value={formData.description}
           />
         </div>
 
@@ -78,48 +206,37 @@ function UserForm() {
             className="form-control"
             id="objectives"
             rows={3}
-            defaultValue={""}
             name="objectives"
+            onChange={handleInputChange}
+            value={formData.objectives}
           />
         </div>
 
         <div className="col-md-6">
           <label>CNIC</label>
-          <input type="text" name="CNIC" className="form-control" id="CNIC" />
+          <input type="text" name="CNIC" className="form-control" id="CNIC" onChange={handleInputChange}
+            value={formData.CNIC} />
         </div>
         <div className="col-md-6">
           <label>Marital Status</label>
-          <div>
-            <div className="form-check form-check-inline">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="inputmaritalStatus"
-                defaultValue="yes"
-                name="marital_status"
-              />
-              <label>yes</label>
-            </div>
-            <div className="form-check form-check-inline">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="inputmaritalStatus"
-                defaultValue="no"
-                name="marital_status"
-              />
-              <label>No</label>
-            </div>
-          </div>
+          
+          <select class="form-select" aria-label="Marital Status"  name="marital_status" value={formData.marital_status} onChange={handleSelectChange}>
+  <option value="">Select Marital Status</option>
+                  <option value="1">yes</option>
+                  <option value="0">no</option>
+</select>
+
+
+
         </div>
 
         <div className="col-12">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" onClick={handleNextClick}>
             Next
           </button>
         </div>
       </form>
-    </>
+    </>           
   );
 }
 
