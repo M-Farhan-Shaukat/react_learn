@@ -71,7 +71,7 @@ function TextForm(props) {
           className="btn btn-primary m-2"
           onClick={handleRemoveExtraSpaceClick}
         >
-         Remove Extra Spasec
+         Remove Extra Spaces
         </button>
 
         <button
@@ -91,7 +91,7 @@ function TextForm(props) {
         <p className="" >{text.split(" ").length} words and total character are {text.length}</p>
         <p className="" >{0.008  * text.split(" ").length} Minutes required to read</p>
         <h3 className="" >Preview Your Test </h3>
-            <p className="" >{text}</p>
+            <p className="" >{text.length > 0 ? text : "Enter Something in textbox to Preview"}</p>
       </div>
     </>
   );
