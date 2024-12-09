@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function TextForm() {
+function TextForm(props) {
   const [text, setText] = useState("");
   const hanldleTextChange = (e) => {
     console.log(e.target.value)
@@ -19,16 +19,28 @@ function TextForm() {
     let newText = ""
     setText(newText)
   };
+
+  const handleCopyClick=()=>{
+    let text = document.getElementById('entertexthere');
+    text.select();
+    navigator.clipboard.writeText(text.value);
+  }
+  const handleRemoveExtraSpaceClick=()=>{
+    let newText = text.split(/[ ]+/)
+    setText(newText.join(" "))
+  }
+  
   return (
     <>
-      <div className="mb-3">
-        <h1>Enter Text to anaylize below</h1>
+      <div className=" container mb-3" style={{backgroundColor: props.mode==='light'?'white':'grey', color : props.mode==='light'?'black':'white'}}>
+        <h1 className="">Enter Text to anaylize below</h1>
         <textarea
           className="form-control"
           id="entertexthere"
           rows={8}
           value={text}
           onChange={hanldleTextChange}
+          style={{backgroundColor: props.mode==='light'?'white':'grey', color : props.mode==='light'?'black':'white'}}
         />
 
         <button
@@ -46,24 +58,40 @@ function TextForm() {
           Convert to Lowercase
         </button>
 
+       
+        <button
+          type="button"
+          className="btn btn-primary m-2"
+          onClick={handleCopyClick}
+        >
+         Copy Text
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary m-2"
+          onClick={handleRemoveExtraSpaceClick}
+        >
+         Remove Extra Spasec
+        </button>
+
         <button
           type="button"
           className="btn btn-primary m-2"
           onClick={handleClearClick}
         >
-         Clear All
+         Clear Text
         </button>
       </div>
 
-      <div>
-        <h2>
+      <div className="container" style={{backgroundColor: props.mode==='light'?'white':'grey', color : props.mode==='light'?'black':'white'}}>
+        <h2 className="" >
            Your Text Summary
         </h2>
 
-        <p>{text.split(" ").length} words and total character are {text.length}</p>
-        <p>{0.008  * text.split(" ").length} Minutes required to read</p>
-        <h3>Preview Your Test </h3>
-            <p>{text}</p>
+        <p className="" >{text.split(" ").length} words and total character are {text.length}</p>
+        <p className="" >{0.008  * text.split(" ").length} Minutes required to read</p>
+        <h3 className="" >Preview Your Test </h3>
+            <p className="" >{text}</p>
       </div>
     </>
   );
