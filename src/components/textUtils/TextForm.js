@@ -9,30 +9,36 @@ function TextForm(props) {
   const handleUpClick = () => {
         let newText = text.toUpperCase()
         setText(newText)
-  };
-  const handleloClick = () => {
+        props.showAlert("Convented to UpperCase","success")
+  }
+  const handleloClick =() =>{
     let newText = text.toLowerCase()
     setText(newText)
+    props.showAlert('Convented to LowerCase','success')
+
   };
 
   const handleClearClick = () => {
     let newText = ""
     setText(newText)
+    props.showAlert('Text Cleared','success')
   };
 
   const handleCopyClick=()=>{
     let text = document.getElementById('entertexthere');
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert('Coppied to Clipboard!','success')
   }
   const handleRemoveExtraSpaceClick=()=>{
     let newText = text.split(/[ ]+/)
     setText(newText.join(" "))
+    props.showAlert('Extra Spaces Removed','success')
   }
   
   return (
     <>
-      <div className=" container mb-3" style={{backgroundColor: props.mode==='light'?'white':'grey', color : props.mode==='light'?'black':'white'}}>
+      <div className=" container mb-3" style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}>
         <h1 className="">Enter Text to anaylize below</h1>
         <textarea
           className="form-control"
@@ -83,7 +89,7 @@ function TextForm(props) {
         </button>
       </div>
 
-      <div className="container" style={{backgroundColor: props.mode==='light'?'white':'grey', color : props.mode==='light'?'black':'white'}}>
+      <div className="container" style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}>
         <h2 className="" >
            Your Text Summary
         </h2>
