@@ -1,10 +1,12 @@
 import React , { useState } from 'react'
+import { Navigate } from 'react-router-dom';
 
 function UserTable() {
 
     const handleCreateUser = () =>{
-        console.log('craete was clicked');
+       Navigate('/create-user')
     }
+  
   return (
     <>
     <div>
