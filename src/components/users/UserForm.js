@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function UserForm() {
 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -61,6 +63,12 @@ function UserForm() {
     e.preventDefault();
     console.log(formData)
   }
+
+  const handleCancelClick=(e)=>{
+   
+   navigate('/users')
+  }
+  
   return (
     <>
       <form className="row g-3">
@@ -231,8 +239,12 @@ function UserForm() {
         </div>
 
         <div className="col-12">
-          <button type="submit" className="btn btn-primary" onClick={handleNextClick}>
+          <button type="submit" className="btn btn-primary mx-1" onClick={handleNextClick}>
             Next
+          </button>
+
+          <button type="submit" className="btn btn-primary" onClick={handleCancelClick}>
+            Cancel
           </button>
         </div>
       </form>

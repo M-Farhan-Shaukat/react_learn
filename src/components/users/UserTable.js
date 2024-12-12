@@ -1,10 +1,10 @@
 import React , { useState } from 'react'
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function UserTable() {
-
+  const navigate = useNavigate();
     const handleCreateUser = () =>{
-       Navigate('/create-user')
+       navigate('/create-user')
     }
   
   return (
