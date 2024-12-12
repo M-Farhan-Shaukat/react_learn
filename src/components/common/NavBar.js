@@ -27,7 +27,7 @@ function NavBar(props) {
         <input className={`form-control me-2 bg-${props.mode}`} type="search" placeholder={props.searchPlaceholder} aria-label="Search" />
         <button className="btn btn-outline-success" type="submit">{props.searchButtonName}</button>
       </form> */}
-      <div class="form-check form-switch">
+      <div className="form-check form-switch">
 <div className={`text-${props.mode==='light'?'dark':'light'}`}>
   <input className="form-check-input" type="checkbox" onClick={props.toggleMode  } role="switch" id="flexSwitchCheckDefault" />
   <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{props.switchText}</label>

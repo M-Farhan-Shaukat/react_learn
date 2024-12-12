@@ -62,12 +62,7 @@ function UserForm() {
   const handleNextClick=(e)=>{
     e.preventDefault();
     console.log(formData)
-  }
-
-  const handleCancelClick=(e)=>{
-   
-   navigate('/users')
-  }
+  } 
   
   return (
     <>
@@ -228,7 +223,7 @@ function UserForm() {
         <div className="col-md-6">
           <label>Marital Status</label>
           
-          <select class="form-select" aria-label="Marital Status"  name="marital_status" value={formData.marital_status} onChange={handleSelectChange}>
+          <select className="form-select" aria-label="Marital Status"  name="marital_status" value={formData.marital_status} onChange={handleSelectChange}>
   <option value="">Select Marital Status</option>
                   <option value="1">yes</option>
                   <option value="0">no</option>
@@ -243,7 +238,7 @@ function UserForm() {
             Next
           </button>
 
-          <button type="submit" className="btn btn-primary" onClick={handleCancelClick}>
+          <button type="submit" className="btn btn-primary" onClick={()=>navigate('/users')}>
             Cancel
           </button>
         </div>

@@ -3,14 +3,11 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 function UserTable() {
   const navigate = useNavigate();
-    const handleCreateUser = () =>{
-       navigate('/create-user')
-    }
-  
+ 
   return (
     <>
     <div>
-        <button className=" btn btn-success" onClick={handleCreateUser}>Create</button>
+        <button className=" btn btn-success" onClick={()=>navigate('/create-user')}>Create</button>
     </div>
     <table className="table table-striped">
       <thead>
