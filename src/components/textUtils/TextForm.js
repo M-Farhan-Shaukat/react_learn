@@ -16,7 +16,6 @@ function TextForm(props) {
     setText(newText);
     props.showAlert("Convented to LowerCase", "success");
   };
-
   const handleClearClick = () => {
     const isConfirmed = window.confirm("Are you sure you want to Clear this?");
     if (isConfirmed) {
@@ -26,10 +25,6 @@ function TextForm(props) {
       props.showAlert("Action Cancelled", "danger");
     }
   };
-
-   
-  // };
-
   const handleCopyClick = () => {
     let text = document.getElementById("entertexthere");
     text.select();
@@ -41,6 +36,14 @@ function TextForm(props) {
     setText(newText.join(" "));
     props.showAlert("Extra Spaces Removed", "success");
   };
+  const handleRemoveSpecialCharacterClick = () => {
+    let newText = text.replace(/[^\w\s',./]/g, '');
+    setText(newText);
+    props.showAlert("Special Characters Removed", "success");
+  };
+
+
+  
   const wordCount = text
     .trim()
     .split(/\s+/)
@@ -94,7 +97,13 @@ function TextForm(props) {
         >
           Remove Extra Spaces
         </button>
-
+        <button
+          type="button"
+          className="btn btn-primary m-2"
+          onClick={handleRemoveSpecialCharacterClick}
+        >
+          Remove Special Characters
+        </button>
         <button
           type="button"
           className="btn btn-primary m-2"
@@ -124,6 +133,7 @@ function TextForm(props) {
             <span> {" "}
             {text.length > 0 ? wordCount : 0}</span>
           </div>
+          
           <div className="stat">
             <span>SENTENCES</span>
             <span>
