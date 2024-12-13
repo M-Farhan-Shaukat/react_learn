@@ -32,25 +32,24 @@ function App() {
       showAlert("Light Mode is Enabled", "success");
     }
   };
-const NavHeadings={
- 
-        users:"Users",
-        about:"About us",
-        home:"Home"
-    }
+  const NavHeadings = {
+    users: "Users",
+    about: "About us",
+    home: "Home",
+  };
 
   return (
     <>
       <NavBar
         title="CVM"
-        NavHeadings= {NavHeadings}
+        NavHeadings={NavHeadings}
         searchPlaceholder="Search User"
         searchButtonName="Search"
         mode={mode}
         toggleMode={toggleMode}
         switchText={switchText}
       />
-      <div className="container my-5">
+      <div className="container my-2">
         <Alert alert={alert} />
         <Routes>
           <Route
@@ -58,18 +57,11 @@ const NavHeadings={
             path="/"
             element={<TextForm showAlert={showAlert} mode={mode} />}
           />
-          <Route exact path="/about" element={<AboutTextUtils  mode={mode} />} />
+          <Route exact path="/about" element={<AboutTextUtils mode={mode} />} />
           <Route exact path="/users" element={<UserTable />} />
           <Route exact path="/create-user" element={<UserForm />} />
-
         </Routes>
       </div>
-
-      {/* userform is imported and user table is commented until installation of react router */}
-      {/* <UserTable /> */}
-      {/* <UserForm /> */}
-      {/* <TextForm showAlert={showAlert} mode={mode} /> */}
-      {/* <AboutTextUtils /> */}
     </>
   );
 }

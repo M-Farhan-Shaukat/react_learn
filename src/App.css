@@ -77,3 +77,19 @@
     flex: 1 1 100%; /* On small screens, each stat takes the full width */
   }
 }
+
+
+/* Positioning Alert at the top of the page without affecting other content */
+.alert-container {
+  position: fixed;
+  top: 10px;  /* Adjust the distance from the top as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050;  /* Ensure it stays above other content */
+  max-width: 80%;  /* Optional: Limit max width */
+  padding: 10px;
+}
+
+.container {
+  padding-top: 60px;  /* Adjust the container padding to prevent content being hidden behind alert */
+}
