@@ -1,45 +1,23 @@
-import React ,{useState}from "react";
+import React from "react";
 
-function AboutTextUtils() {
-    const [btnText ,setBtnText] = useState('Enable Dark Mode')
-    const [darkStype,setDarkStyle] = useState({
-        color:"black",
-        backgroundColor :"white"
-    })
-    const handleDarkMode =()=>{
-        if(darkStype.color === "black"){
-            setDarkStyle({
-                 color:"white",
-        backgroundColor :"black"
-            })
-            setBtnText('Enable Light Mode')
-        }else{
-            setDarkStyle({
-                color:"black",
-       backgroundColor :"white"
-           })
-           setBtnText('Enable Dark Mode')
-        }
-    }
+function AboutTextUtils(props) {
   return (
     <div>
-      <div className="container" style={darkStype}>
-        <h1>
-            Aboun Us
-        </h1>
-        <div className="accordion" id="accordionExample" style={darkStype}>
+      <div className="container" style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}>
+        <h1>Aboun Us</h1>
+        <div className="accordion" id="accordionExample" style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}>
           <div className="accordion-item">
             <h2 className="accordion-header">
               <button
-                className="accordion-button"
+                className={`accordion-button ${props.mode==='dark' ? 'mode--dark':''}`}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseOne"
                 aria-expanded="true"
                 aria-controls="collapseOne"
-                style={darkStype}
+                style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}
               >
-                Accordion Item #1
+                Text Formatting Made Simple
               </button>
             </h2>
             <div
@@ -47,31 +25,29 @@ function AboutTextUtils() {
               className="accordion-collapse collapse show"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body" style={darkStype}>
-                <strong>This is the first item's accordion body.</strong> It is
-                shown by default, until the collapse plugin adds the appropriate
-                classes that we use to style each element. These classes control
-                the overall appearance, as well as the showing and hiding via
-                CSS transitions. You can modify any of this with custom CSS or
-                overriding our default variables. It's also worth noting that
-                just about any HTML can go within the{" "}
-                <code>.accordion-body</code>, though the transition does limit
-                overflow.
+              <div className="accordion-body" style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}>
+                Our <strong>Text Utility Web App</strong> offers a seamless way
+                to format your text with ease. You can instantly convert text to{" "}
+                <strong>UPPERCASE</strong> or
+                <strong>lowercase</strong> with a single click. The app also
+                helps you <strong>remove extra spaces</strong> from your text,
+                ensuring a clean, well-structured format. These features are
+                designed to make your text look professional and error-free.
               </div>
             </div>
           </div>
           <div className="accordion-item">
             <h2 className="accordion-header">
               <button
-                className="accordion-button collapsed"
+                className={`accordion-button collapsed ${props.mode==='dark' ? 'mode--dark':''}`}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseTwo"
                 aria-expanded="false"
                 aria-controls="collapseTwo"
-                style={darkStype}
+                style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}
               >
-                Accordion Item #2
+                Efficient Text Management
               </button>
             </h2>
             <div
@@ -79,31 +55,29 @@ function AboutTextUtils() {
               className="accordion-collapse collapse"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body" style={darkStype}>
-                <strong>This is the second item's accordion body.</strong> It is
-                hidden by default, until the collapse plugin adds the
-                appropriate classes that we use to style each element. These
-                classes control the overall appearance, as well as the showing
-                and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth
-                noting that just about any HTML can go within the{" "}
-                <code>.accordion-body</code>, though the transition does limit
-                overflow.
+              <div className="accordion-body" style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}>
+                With our intuitive tools, you can <strong>copy text</strong> to
+                your clipboard with a single tap, saving you time and effort.
+                The <strong>Clear Text</strong>
+                feature allows you to quickly wipe the text field, giving you a
+                fresh start whenever required. These options make it simple to
+                manage your text without hassle, making your workflow faster and
+                more efficient.
               </div>
             </div>
           </div>
           <div className="accordion-item">
             <h2 className="accordion-header">
               <button
-                className="accordion-button collapsed"
+                className={`accordion-button collapsed ${props.mode==='dark' ? 'mode--dark':''}`}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseThree"
                 aria-expanded="false"
                 aria-controls="collapseThree"
-                style={darkStype}
+                style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}
               >
-                Accordion Item #3
+                Real-Time Insights and Preview
               </button>
             </h2>
             <div
@@ -111,25 +85,17 @@ function AboutTextUtils() {
               className="accordion-collapse collapse"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body" style={darkStype}>
-                <strong>This is the third item's accordion body.</strong> It is
-                hidden by default, until the collapse plugin adds the
-                appropriate classes that we use to style each element. These
-                name         classes control the overall appearance, as well as the showing
-                and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth
-                noting that just about any HTML can go within the{" "}
-                <code>.accordion-body</code>, though the transition does limit
-                overflow.
+              <div className="accordion-body" style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}>
+                Stay in control with real-time word <strong>count, character count,</strong> and
+                an interactive <strong>text preview</strong>. As you type or format your content,
+                you can instantly see how many words and characters you've used,
+                allowing for better precision and planning. This live preview
+                ensures you always know how your text will look once it's
+                finalized.
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="container">
-      <button type="button" className="btn btn-primary my-3" onClick={handleDarkMode}>{btnText}</button>
-
-
       </div>
     </div>
   );

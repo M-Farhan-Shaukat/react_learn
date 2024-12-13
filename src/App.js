@@ -58,7 +58,7 @@ const NavHeadings={
             path="/"
             element={<TextForm showAlert={showAlert} mode={mode} />}
           />
-          <Route exact path="/about" element={<AboutTextUtils />} />
+          <Route exact path="/about" element={<AboutTextUtils  mode={mode} />} />
           <Route exact path="/users" element={<UserTable />} />
           <Route exact path="/create-user" element={<UserForm />} />
 

@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+
+.mode--dark.accordion-button::after {
+ filter: invert(1); 
+}
+.statistics {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #3b5998; */
+  /* color: white; */
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.stat {
+  text-align: center;
+}
+
+.stat span:first-child {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.stat span:last-child {
+  font-size: 20px;
+  font-weight: bold;
+}
