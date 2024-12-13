@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 function TextForm(props) {
   const [text, setText] = useState("");
+  const [findText, setFindText] = useState("");
+  const [replaceText, setReplaceText] = useState("");
   const hanldleTextChange = (e) => {
     console.log(e.target.value);
     setText(e.target.value);
@@ -19,8 +21,8 @@ function TextForm(props) {
   const handleClearClick = () => {
     const isConfirmed = window.confirm("Are you sure you want to Clear this?");
     if (isConfirmed) {
-    setText("");
-    props.showAlert("Text Cleared", "success");
+      setText("");
+      props.showAlert("Text Cleared", "success");
     } else {
       props.showAlert("Action Cancelled", "danger");
     }
@@ -37,13 +39,23 @@ function TextForm(props) {
     props.showAlert("Extra Spaces Removed", "success");
   };
   const handleRemoveSpecialCharacterClick = () => {
-    let newText = text.replace(/[^\w\s',./]/g, '');
+    let newText = text.replace(/[^\w\s',./]/g, "");
     setText(newText);
     props.showAlert("Special Characters Removed", "success");
   };
 
+  const handleReplaceText = () => {
+    if (findText.trim() === "") {
+      alert("Please enter text to find.");
+      return;
+    }
+    const regex = new RegExp(findText, "g");
+    const updatedText = text.replace(regex, replaceText);
+    setText(updatedText);
 
-  
+    props.showAlert("Replaced successfully", "success");
+  };
+
   const wordCount = text
     .trim()
     .split(/\s+/)
@@ -72,6 +84,7 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleUpClick}
+          disabled={ text.length === 0}
         >
           Convert to Uppercase
         </button>
@@ -79,6 +92,7 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleloClick}
+          disabled={ text.length === 0}
         >
           Convert to Lowercase
         </button>
@@ -87,6 +101,7 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleCopyClick}
+          disabled={ text.length === 0}
         >
           Copy Text
         </button>
@@ -94,6 +109,7 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleRemoveExtraSpaceClick}
+          disabled={ text.length === 0}
         >
           Remove Extra Spaces
         </button>
@@ -101,6 +117,7 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleRemoveSpecialCharacterClick}
+          disabled={ text.length === 0}
         >
           Remove Special Characters
         </button>
@@ -108,9 +125,18 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleClearClick}
-          
+          disabled={ text.length === 0}
         >
           Clear Text
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          disabled={ text.length === 0}
+        >
+          Replace Words
         </button>
       </div>
 
@@ -125,28 +151,30 @@ function TextForm(props) {
         <div className="statistics">
           <div className="stat">
             <span>CHARACTERS</span>
-            <span>{" "}
-            {text.length}</span>
+            <span> {text.length}</span>
           </div>
           <div className="stat">
             <span>WORDS</span>
-            <span> {" "}
-            {text.length > 0 ? wordCount : 0}</span>
+            <span> {text.length > 0 ? wordCount : 0}</span>
           </div>
-          
+
           <div className="stat">
             <span>SENTENCES</span>
             <span>
-            {" "}
-            {text.split("\n").filter((line) => line.trim() !== "").length}
+              {" "}
+              {text.split("\n").filter((line) => line.trim() !== "").length}
             </span>
           </div>
           <div className="stat">
             <span>PARAGRAPHS</span>
-            <span> {
-            text.split(/\n\s*\n/).filter((paragraph) => paragraph.trim() !== "")
-              .length
-          }</span>
+            <span>
+              {" "}
+              {
+                text
+                  .split(/\n\s*\n/)
+                  .filter((paragraph) => paragraph.trim() !== "").length
+              }
+            </span>
           </div>
           <div className="stat">
             <span>SPACES</span>
@@ -161,6 +189,75 @@ function TextForm(props) {
         <p className="">
           {text.length > 0 ? text : "Enter Something to Preview"}
         </p>
+      </div>
+
+      <div>
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex={-1}
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                  Modal title
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                />
+              </div>
+              <div className="modal-body">
+                <div className="col-md-12">
+                  <label>Find Text:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    className="form-control"
+                    id="inputName"
+                    onChange={(e) => setFindText(e.target.value)}
+                    value={findText}
+                    placeholder="Enter text to find"
+                  />
+                </div>
+                <div className="col-md-12">
+                  <label>Replace With:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    className="form-control"
+                    id="inputName"
+                    onChange={(e) => setReplaceText(e.target.value)}
+                    value={replaceText}
+                    placeholder="Enter text to find"
+                  />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleReplaceText}
+                  data-bs-dismiss="modal"
+                >
+                  Find and Replace
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
