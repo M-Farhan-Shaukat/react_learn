@@ -18,14 +18,9 @@ function TextForm(props) {
     setText(newText);
     props.showAlert("Convented to LowerCase", "success");
   };
-  const handleClearClick = () => {
-    const isConfirmed = window.confirm("Are you sure you want to Clear this?");
-    if (isConfirmed) {
+  const handleClearClick = () => {  
       setText("");
       props.showAlert("Text Cleared", "success");
-    } else {
-      props.showAlert("Action Cancelled", "danger");
-    }
   };
   const handleCopyClick = () => {
     let text = document.getElementById("entertexthere");
@@ -52,6 +47,8 @@ function TextForm(props) {
     const regex = new RegExp(findText, "g");
     const updatedText = text.replace(regex, replaceText);
     setText(updatedText);
+    setFindText('');
+    (setReplaceText(''))
 
     props.showAlert("Replaced successfully", "success");
   };
@@ -124,7 +121,9 @@ function TextForm(props) {
         <button
           type="button"
           className="btn btn-primary m-2"
-          onClick={handleClearClick}
+          // onClick={handleClearClick}
+           data-bs-toggle="modal"
+          data-bs-target="#exampleModal1"
           disabled={ text.length === 0}
         >
           Clear Text
@@ -203,7 +202,7 @@ function TextForm(props) {
             <div className="modal-content">
               <div className="modal-header">
                 <h1 className="modal-title fs-5" id="exampleModalLabel">
-                  Modal title
+                  Fill fields to replace your words
                 </h1>
                 <button
                   type="button"
@@ -259,6 +258,53 @@ function TextForm(props) {
           </div>
         </div>
       </div>
+
+      <div>
+        <div
+          className="modal fade"
+          id="exampleModal1"
+          tabIndex={-1}
+          aria-labelledby="exampleModal1Label"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
+                  Confirm Clear
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                />
+              </div>
+              <div className="modal-body">
+              Are you sure you want to Clear this Text?
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleClearClick}
+                  data-bs-dismiss="modal"
+                >
+                  Clear
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </>
   );
 }
