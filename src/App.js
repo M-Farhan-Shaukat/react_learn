@@ -58,8 +58,8 @@ function App() {
             element={<TextForm showAlert={showAlert} mode={mode} />}
           />
           <Route exact path="/about" element={<AboutTextUtils mode={mode} />} />
-          <Route exact path="/users" element={<UserTable />} />
-          <Route exact path="/create-user" element={<UserForm />} />
+          <Route exact path="/users" element={<UserTable mode={mode}/>} />
+          <Route exact path="/create-user" element={<UserForm mode={mode}/>} />
         </Routes>
       </div>
     </>

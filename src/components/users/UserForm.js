@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function UserForm() {
+function UserForm(props) {
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -66,7 +66,10 @@ function UserForm() {
   
   return (
     <>
-      <form className="row g-3">
+      <form className="row g-3"  style={{
+          backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+          color: props.mode === "light" ? "black" : "white",
+        }}>
         <div className="col-md-6">
           <label>Name</label>
           <input

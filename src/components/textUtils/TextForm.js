@@ -184,7 +184,7 @@ function TextForm(props) {
         {/* <p className="">
           {0.008 * text.split(" ").length} Minutes required to read
         </p> */}
-        <h3 className="">Preview Your Test </h3>
+        <h3 className="">Preview Your Text </h3>
         <p className="">
           {text.length > 0 ? text : "Enter Something to Preview"}
         </p>
