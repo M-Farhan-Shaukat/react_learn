@@ -4,7 +4,7 @@ import NavBar from "./components/common/NavBar";
 import AboutTextUtils from "./components/textUtils/AboutTextUtils";
 import TextForm from "./components/textUtils/TextForm";
 import Alert from "./components/common/Alert";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import UserForm from "./components/users/UserForm";
 import UserTable from "./components/users/UserTable";
 
@@ -57,8 +57,11 @@ function App() {
           <Route
             exact
             path="/"
-            element={<TextForm showAlert={showAlert} mode={mode} />}
+            element={<Navigate to="/character-counter" />}
           />
+        <Route path="/character-counter" element={<TextForm showAlert={showAlert} mode={mode} />} />
+
+
           <Route exact path="/about" element={<AboutTextUtils mode={mode} />} />
           <Route exact path="/users" element={<UserTable mode={mode}/>} />
           <Route exact path="/create-user" element={<UserForm mode={mode}/>} />
