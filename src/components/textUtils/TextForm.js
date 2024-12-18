@@ -66,7 +66,10 @@ function TextForm(props) {
           color: props.mode === "light" ? "black" : "white",
         }}
       >
-        <h1 className="">Enter Text to anaylize below</h1>
+        <h1>Online Character Counter Tool</h1> 
+        <p>Count Characters, Words, Sentences & More</p>
+
+        <h3 className="">Enter text below to analyze.</h3>
         <textarea
           className="form-control"
           id="entertexthere"

@@ -50,6 +50,8 @@ function App() {
         switchText={switchText}
       />
       <div className="container my-2">
+      
+
         <Alert alert={alert} />
         <Routes>
           <Route

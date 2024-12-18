@@ -10,7 +10,7 @@ function AboutTextUtils(props) {
           color: props.mode === "light" ? "black" : "white",
         }}
       >
-        <h1>Aboun Us</h1>
+        <h1>About Our Online Character Counter Tool</h1>
         <div
           className="accordion"
           id="accordionExample"
@@ -20,21 +20,10 @@ function AboutTextUtils(props) {
           }}
         >
           <p>
-            Text utilities are essential tools designed to help users manage and
-            manipulate text efficiently. These utilities provide a wide range of
-            functionalities such as converting text to uppercase or lowercase,
-            removing extra spaces, copying text to the clipboard, clearing text,
-            and even removing special characters. Additionally, they can be used
-            to replace specific words or phrases and count various aspects of
-            text like the number of words, characters, lines, and paragraphs.
-            With the ability to preview these changes in real-time, text
-            utilities streamline workflows, save time, and enhance productivity,
-            especially in tasks like content creation, editing, and data
-            processing. These tools are widely used by writers, editors,
-            developers, and anyone who needs to work with large amounts of text
-            in an efficient and organized manner.
+            Our <strong>Online Character Counter Tool</strong> is a versatile and user-friendly platform designed to help users analyze and optimize their text. With this tool, you can easily count characters, words, sentences, paragraphs, and more. It allows you to format, clean, and refine your content, making it perfect for writers, students, developers, and anyone working with large amounts of text. This web-based tool ensures accurate, efficient, and real-time text analysis to support a variety of content-related tasks.
           </p>
-          <h3>Key features of this web is as follow :</h3>
+          <h3>Key Features of Our Online Character Counter Tool:</h3>
+
           <div className="accordion-item">
             <h2 className="accordion-header">
               <button
@@ -51,7 +40,7 @@ function AboutTextUtils(props) {
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
-                Text Conversion & Formatting
+                Count Characters, Words & Sentences
               </button>
             </h2>
             <div
@@ -66,20 +55,11 @@ function AboutTextUtils(props) {
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
-                Our <strong>Text Manipulation Web Tool</strong> allows you to
-                convert text to <strong>uppercase</strong> or{" "}
-                <strong>lowercase</strong> with just a single click, ensuring
-                uniformity across your content. You can also{" "}
-                <strong>remove extra spaces</strong> from messy text to create
-                clean, well-structured paragraphs. If you want a fresh start,
-                simply use the <strong>clear text</strong> option to delete all
-                content instantly. These features make text formatting quick,
-                easy, and efficient for <strong>writers</strong>,{" "}
-                <strong>students</strong>, and <strong>developers</strong>{" "}
-                alike.
+                Our tool allows you to count <strong>characters</strong>, <strong>words</strong>, <strong>sentences</strong>, and <strong>paragraphs</strong> in real-time. This makes it an essential resource for students, writers, and SEO specialists who need to meet specific content limits or improve the readability of their work.
               </div>
             </div>
           </div>
+
           <div className="accordion-item">
             <h2 className="accordion-header">
               <button
@@ -96,7 +76,7 @@ function AboutTextUtils(props) {
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
-                Text Cleaning & Editing
+                Text Cleaning & Formatting
               </button>
             </h2>
             <div
@@ -111,19 +91,11 @@ function AboutTextUtils(props) {
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
-                This tool provides advanced text-cleaning options like{" "}
-                <strong>removing special characters</strong> to keep your
-                content plain and simple. It also allows you to{" "}
-                <strong>replace specific words</strong> throughout the text,
-                saving time when making global edits. With these features, you
-                can ensure your content is <strong>clean</strong>,{" "}
-                <strong>consistent</strong>, and ready for professional use.
-                Whether you’re editing <strong>large documents</strong> or{" "}
-                <strong>small snippets</strong>, these functionalities boost{" "}
-                <strong>productivity</strong>.
+                Our <strong>Text Cleaning</strong> feature helps you eliminate extra spaces, remove special characters, and clean up messy text with a single click. You can also clear all text instantly to start fresh. This makes it easy to maintain well-structured, professional-looking content.
               </div>
             </div>
           </div>
+
           <div className="accordion-item">
             <h2 className="accordion-header">
               <button
@@ -140,7 +112,7 @@ function AboutTextUtils(props) {
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
-                Word & Character Analysis
+                SEO-Optimized Content Analysis
               </button>
             </h2>
             <div
@@ -155,24 +127,11 @@ function AboutTextUtils(props) {
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
-                Track the structure and length of your content with real-time
-                statistics on <strong>word count</strong>,{" "}
-                <strong>character count</strong>, <strong>line count</strong>,
-                and <strong>paragraph count</strong>. This analysis helps you
-                stay within <strong>content limits</strong>, meet{" "}
-                <strong>SEO requirements</strong>, or ensure{" "}
-                <strong>readability</strong>. Additionally, you can{" "}
-                <strong>preview the edited text</strong> before copying it,
-                ensuring everything looks perfect. The one-click{" "}
-                <strong>copy option</strong> allows you to transfer the final
-                version of your text effortlessly. This all-in-one tool is ideal
-                for <strong>content creators</strong>, <strong>students</strong>
-                , and <strong>editors</strong> looking to maintain{" "}
-                <strong>clean</strong>, <strong>optimized</strong>, and{" "}
-                <strong>structured text</strong>.
+                Our tool helps you optimize your content for <strong>SEO</strong> by providing valuable insights into word count, character count, and readability. This is ideal for content creators, digital marketers, and web developers who want to ensure their text meets SEO guidelines and attracts search engines.
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
