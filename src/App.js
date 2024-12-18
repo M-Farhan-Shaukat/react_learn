@@ -7,6 +7,7 @@ import Alert from "./components/common/Alert";
 import { Navigate, Route, Routes } from "react-router-dom";
 import UserForm from "./components/users/UserForm";
 import UserTable from "./components/users/UserTable";
+import { Helmet } from 'react-helmet';
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -40,6 +41,9 @@ function App() {
 
   return (
     <>
+    <Helmet>
+        <title>Character Counter - Count Characters Instantly</title>
+      </Helmet>
       <NavBar
         title="CVM"
         NavHeadings={NavHeadings}
@@ -50,7 +54,7 @@ function App() {
         switchText={switchText}
       />
       <div className="container my-2">
-      
+      <h1>Online Character Counter Tool</h1> 
 
         <Alert alert={alert} />
         <Routes>
