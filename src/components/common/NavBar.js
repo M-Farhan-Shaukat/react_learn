@@ -19,9 +19,9 @@ function NavBar(props) {
         <li className="nav-item">
           <Link className="nav-link" to="/about">{props.NavHeadings.about}</Link>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link className="nav-link" to="/users">{props.NavHeadings.users}</Link>
-        </li>
+        </li> */}
       </ul>
       {/* <form className="d-flex" role="search">
         <input className={`form-control me-2 bg-${props.mode}`} type="search" placeholder={props.searchPlaceholder} aria-label="Search" />
