@@ -54,7 +54,10 @@ function App() {
         switchText={switchText}
       />
       <div className="container my-2">
-      <h1>Online Character Counter Tool</h1> 
+      <h1  style={{
+                  backgroundColor: mode === "light" ? "white" : "#0b2240",
+                  color: mode === "light" ? "black" : "white",
+                }}>Online Character Counter Tool</h1> 
 
         <Alert alert={alert} />
         <Routes>

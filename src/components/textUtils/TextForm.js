@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import AboutTextUtils from "./AboutTextUtils";
+import About from "./About";
 
 function TextForm(props) {
   const [text, setText] = useState("");
@@ -123,7 +125,7 @@ function TextForm(props) {
         </button>
         <button
           type="button"
-          className="btn btn-primary m-2"
+          className="btn btn-danger m-2"
           // onClick={handleClearClick}
            data-bs-toggle="modal"
           data-bs-target="#exampleModal1"
@@ -149,7 +151,7 @@ function TextForm(props) {
           color: props.mode === "light" ? "black" : "white",
         }}
       >
-        <h2 className="">Your Text Summary</h2>
+        <h1 className="">Your Text Summary</h1>
         <div className="statistics">
           <div className="stat">
             <span>CHARACTERS</span>
@@ -187,10 +189,14 @@ function TextForm(props) {
         {/* <p className="">
           {0.008 * text.split(" ").length} Minutes required to read
         </p> */}
-        <h3 className="">Preview Your Text </h3>
+        <h1 className="">Preview Your Text </h1>
         <p className="">
           {text.length > 0 ? text : "Enter Something to Preview"}
         </p>
+
+        <div className="about-container">
+          <About mode={props.mode}/>
+        </div>
       </div>
 
       <div>
@@ -260,7 +266,9 @@ function TextForm(props) {
             </div>
           </div>
         </div>
+        
       </div>
+     
 
       <div>
         <div
@@ -307,7 +315,7 @@ function TextForm(props) {
           </div>
         </div>
       </div>
-
+      
     </>
   );
 }
