@@ -88,9 +88,9 @@
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
   }
   
-  /* .container {
+   .container {
     padding-right: 89px; 
-  } */
+  } 
 
   .navbar {
   position: fixed;
@@ -109,6 +109,9 @@
   position: relative;
   width: 100%;
   }
+  .container {
+    padding-right: 0px; 
+  } 
 }
 @media (max-width: 480px) {
   .about-container {

@@ -20,9 +20,9 @@ function TextForm(props) {
     setText(newText);
     props.showAlert("Convented to LowerCase", "success");
   };
-  const handleClearClick = () => {  
-      setText("");
-      props.showAlert("Text Cleared", "success");
+  const handleClearClick = () => {
+    setText("");
+    props.showAlert("Text Cleared", "success");
   };
   const handleCopyClick = () => {
     let text = document.getElementById("entertexthere");
@@ -49,8 +49,8 @@ function TextForm(props) {
     const regex = new RegExp(findText, "g");
     const updatedText = text.replace(regex, replaceText);
     setText(updatedText);
-    setFindText('');
-    (setReplaceText(''))
+    setFindText("");
+    setReplaceText("");
 
     props.showAlert("Replaced successfully", "success");
   };
@@ -68,7 +68,6 @@ function TextForm(props) {
           color: props.mode === "light" ? "black" : "white",
         }}
       >
-       
         <h2>Count Characters, Words, Sentences & More</h2>
 
         <h3 className="">Enter text below to analyze.</h3>
@@ -86,7 +85,7 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleUpClick}
-          disabled={ text.length === 0}
+          disabled={text.length === 0}
         >
           Convert to Uppercase
         </button>
@@ -94,7 +93,7 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleloClick}
-          disabled={ text.length === 0}
+          disabled={text.length === 0}
         >
           Convert to Lowercase
         </button>
@@ -103,7 +102,7 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleCopyClick}
-          disabled={ text.length === 0}
+          disabled={text.length === 0}
         >
           Copy Text
         </button>
@@ -111,7 +110,7 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleRemoveExtraSpaceClick}
-          disabled={ text.length === 0}
+          disabled={text.length === 0}
         >
           Remove Extra Spaces
         </button>
@@ -119,7 +118,7 @@ function TextForm(props) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleRemoveSpecialCharacterClick}
-          disabled={ text.length === 0}
+          disabled={text.length === 0}
         >
           Remove Special Characters
         </button>
@@ -127,9 +126,9 @@ function TextForm(props) {
           type="button"
           className="btn btn-danger m-2"
           // onClick={handleClearClick}
-           data-bs-toggle="modal"
+          data-bs-toggle="modal"
           data-bs-target="#exampleModal1"
-          disabled={ text.length === 0}
+          disabled={text.length === 0}
         >
           Clear Text
         </button>
@@ -138,69 +137,66 @@ function TextForm(props) {
           className="btn btn-primary"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
-          disabled={ text.length === 0}
+          disabled={text.length === 0}
         >
           Replace Words
         </button>
       </div>
-<div className="main-wrapper">
+      <div className="main-wrapper">
+        <div
+          className="container"
+          style={{
+            backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+            color: props.mode === "light" ? "black" : "white",
+          }}
+        >
+          <h1 className="">Your Text Summary</h1>
+          <div className="statistics">
+            <div className="stat">
+              <span>CHARACTERS</span>
+              <span> {text.length}</span>
+            </div>
+            <div className="stat">
+              <span>WORDS</span>
+              <span> {text.length > 0 ? wordCount : 0}</span>
+            </div>
 
-<div
-        className="container"
-        style={{
-          backgroundColor: props.mode === "light" ? "white" : "#0b2240",
-          color: props.mode === "light" ? "black" : "white",
-        }}
-      >
-        <h1 className="">Your Text Summary</h1>
-        <div className="statistics">
-          <div className="stat">
-            <span>CHARACTERS</span>
-            <span> {text.length}</span>
-          </div>
-          <div className="stat">
-            <span>WORDS</span>
-            <span> {text.length > 0 ? wordCount : 0}</span>
+            <div className="stat">
+              <span>SENTENCES</span>
+              <span>
+                {" "}
+                {text.split("\n").filter((line) => line.trim() !== "").length}
+              </span>
+            </div>
+            <div className="stat">
+              <span>PARAGRAPHS</span>
+              <span>
+                {" "}
+                {
+                  text
+                    .split(/\n\s*\n/)
+                    .filter((paragraph) => paragraph.trim() !== "").length
+                }
+              </span>
+            </div>
+            <div className="stat">
+              <span>SPACES</span>
+              <span>{text.split(" ").length - 1}</span>
+            </div>
           </div>
 
-          <div className="stat">
-            <span>SENTENCES</span>
-            <span>
-              {" "}
-              {text.split("\n").filter((line) => line.trim() !== "").length}
-            </span>
-          </div>
-          <div className="stat">
-            <span>PARAGRAPHS</span>
-            <span>
-              {" "}
-              {
-                text
-                  .split(/\n\s*\n/)
-                  .filter((paragraph) => paragraph.trim() !== "").length
-              }
-            </span>
-          </div>
-          <div className="stat">
-            <span>SPACES</span>
-            <span>{text.split(" ").length - 1}</span>
-          </div>
-        </div>
-
-        {/* <p className="">
+          {/* <p className="">
           {0.008 * text.split(" ").length} Minutes required to read
         </p> */}
-        <h1 className="">Preview Your Text </h1>
-        <p className="">
-          {text.length > 0 ? text : "Enter Something to Preview"}
-        </p>
-
-       
-      </div>
-      <div className="about-container">
-          <About mode={props.mode}/>
+          <h1 className="">Preview Your Text </h1>
+          <p className="">
+            {text.length > 0 ? text : "Enter Something to Preview"}
+          </p>
         </div>
-</div>
+        <div className="about-container">
+          <About mode={props.mode} />
+        </div>
+      </div>
       <div>
         <div
           className="modal fade"
@@ -268,9 +264,7 @@ function TextForm(props) {
             </div>
           </div>
         </div>
-        
       </div>
-     
 
       <div>
         <div
@@ -283,7 +277,7 @@ function TextForm(props) {
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">
                   Confirm Clear
                 </h1>
                 <button
@@ -294,7 +288,7 @@ function TextForm(props) {
                 />
               </div>
               <div className="modal-body">
-              Are you sure you want to Clear this Text?
+                Are you sure you want to Clear this Text?
               </div>
               <div className="modal-footer">
                 <button
@@ -317,7 +311,6 @@ function TextForm(props) {
           </div>
         </div>
       </div>
-      
     </>
   );
 }
