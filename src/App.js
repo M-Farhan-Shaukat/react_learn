@@ -66,9 +66,7 @@ function App() {
             path="/"
             element={<Navigate to="/character-counter" />}
           />
-        <Route path="/character-counter" element={<TextForm showAlert={showAlert} mode={mode} />} />
-
-
+          <Route path="/character-counter" element={<TextForm showAlert={showAlert} mode={mode} />} />
           <Route exact path="/about" element={<AboutTextUtils mode={mode} />} />
           <Route exact path="/users" element={<UserTable mode={mode}/>} />
           <Route exact path="/create-user" element={<UserForm mode={mode}/>} />

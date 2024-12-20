@@ -143,8 +143,9 @@ function TextForm(props) {
           Replace Words
         </button>
       </div>
+<div className="main-wrapper">
 
-      <div
+<div
         className="container"
         style={{
           backgroundColor: props.mode === "light" ? "white" : "#0b2240",
@@ -194,11 +195,12 @@ function TextForm(props) {
           {text.length > 0 ? text : "Enter Something to Preview"}
         </p>
 
-        <div className="about-container">
+       
+      </div>
+      <div className="about-container">
           <About mode={props.mode}/>
         </div>
-      </div>
-
+</div>
       <div>
         <div
           className="modal fade"
