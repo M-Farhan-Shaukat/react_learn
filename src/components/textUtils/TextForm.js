@@ -80,7 +80,35 @@ function TextForm(props) {
           placeholder="Enter Text to Utilize"
           // style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}
         />
+<button
+          type="button"
+          className="btn btn-primary m-2"
+          onClick={handleCopyClick}
+          disabled={text.length === 0}
+        >
+          Copy Text
+        </button>
+        <button
+          type="button"
+          className="btn btn-danger m-2"
+          // onClick={handleClearClick}
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal1"
+          disabled={text.length === 0}
+        >
+          Clear Text
+        </button>
 
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          disabled={text.length === 0}
+        >
+          Replace Words
+        </button>
+        
         <button
           type="button"
           className="btn btn-primary m-2"
@@ -98,14 +126,7 @@ function TextForm(props) {
           Convert to Lowercase
         </button>
 
-        <button
-          type="button"
-          className="btn btn-primary m-2"
-          onClick={handleCopyClick}
-          disabled={text.length === 0}
-        >
-          Copy Text
-        </button>
+        
         <button
           type="button"
           className="btn btn-primary m-2"
@@ -122,25 +143,8 @@ function TextForm(props) {
         >
           Remove Special Characters
         </button>
-        <button
-          type="button"
-          className="btn btn-danger m-2"
-          // onClick={handleClearClick}
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal1"
-          disabled={text.length === 0}
-        >
-          Clear Text
-        </button>
-        <button
-          type="button"
-          className="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          disabled={text.length === 0}
-        >
-          Replace Words
-        </button>
+       
+      
       </div>
       <div className="main-wrapper">
         <div
