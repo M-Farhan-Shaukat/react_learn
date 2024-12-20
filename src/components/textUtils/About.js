@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function About(props) {
   return (
@@ -17,6 +18,7 @@ function About(props) {
         working with large amounts of text. This web-based tool ensures
         accurate, efficient, and real-time text analysis to support a variety of
         content-related tasks.
+        Learn more about our <Link to="/about">About Us</Link> page.
       </p>
       <h3>Key Features :</h3>
       <h3>Count Characters, Words & Sentences</h3>
@@ -26,6 +28,7 @@ function About(props) {
         <strong>paragraphs</strong> in real-time. This makes it an essential
         resource for students, writers, and SEO specialists who need to meet
         specific content limits or improve the readability of their work.
+        Learn more about our <Link to="/about">About Us</Link> page.
       </p>
       <h3>Text Cleaning & Formatting</h3>
       <p>
@@ -34,6 +37,7 @@ function About(props) {
         spaces, remove special characters, and clean up messy text with a single
         click. You can also clear all text instantly to start fresh. This makes
         it easy to maintain well-structured, professional-looking content.
+        Learn more about our <Link to="/about">About Us</Link> page.
       </p>
       <h3>SEO-Optimized Content Analysis</h3>
       <p>
@@ -42,6 +46,7 @@ function About(props) {
         readability. This is ideal for content creators, digital marketers, and
         web developers who want to ensure their text meets SEO guidelines and
         attracts search engines.
+        Learn more about our <Link to="/about">About Us</Link> page.
       </p>
 
       <h2>How it is used?</h2>
@@ -51,6 +56,7 @@ function About(props) {
         showing the total number of characters, words, sentences, paragraphs,
         and whitespace in your text. Additionally, the tool calculates keyword
         density, which can be customized through the options menu.
+        Learn more about our <Link to="/about">About Us</Link> page.
       </p>
 
       <h2>Which devices does the counter work on?</h2>
@@ -58,6 +64,7 @@ function About(props) {
         Character Count Online works on absolutely any device. No matter if you
         have a mobile phone, computer, console or tablet the counter will work
         perfectly!
+        Learn more about our <Link to="/about">About Us</Link> page.
       </p>
     </div>
   );
