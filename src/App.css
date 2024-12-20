@@ -78,44 +78,61 @@
   padding-top: 60px;
 }
 .about-container {
-    position: fixed;
-    top: 57px;
-    right: 0;
-    width: 450px;
-    height: 100vh;
-    overflow-y: auto;
-    padding: 20px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-  }
-  
-   .container {
-    padding-right: 89px; 
-  } 
+  position: fixed;
+  top: 57px;
+  right: 0;
+  width: 450px;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
 
-  .navbar {
+.container {
+  padding-right: 89px;
+}
+
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #282c34; 
-  z-index: 1050; 
-  padding: 10px 20px; 
+  background-color: #282c34;
+  z-index: 1050;
+  padding: 10px 20px;
 }
 
- 
 @media (max-width: 1199px) {
-  
-  .about-container {
-  position: relative;
-  width: 100%;
-  }
-  .container {
-    padding-right: 0px; 
-  } 
-}
-@media (max-width: 480px) {
   .about-container {
     position: relative;
     width: 100%;
-    }
+  }
+  .container {
+    padding-right: 13px;
+  }
+  .about-container {
+    height: 100%;
+  }
+}
+
+@media (max-width: 576) {
+  .about-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .container {
+    padding-right: 5px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    padding-right: 205px;
+    height: 100%;
+  }
+  .about-container {
+    height: 100%;
+  }
 }
