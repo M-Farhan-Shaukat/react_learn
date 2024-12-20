@@ -41,7 +41,20 @@ function App() {
 
   return (
     <>
-    <Helmet>
+  <Helmet>
+  <script type="application/ld+json">
+    {`
+     "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://charcount-lime.vercel.app/",
+        "name": "Character Count Tool",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://charcount-lime.vercel.app/?search={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+    `}
+  </script>
         <title>Character Counter - Count Characters Instantly</title>
       </Helmet>
       <NavBar
