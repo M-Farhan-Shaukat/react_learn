@@ -10,7 +10,7 @@ function AboutTextUtils(props) {
           color: props.mode === "light" ? "black" : "white",
         }}
       >
-        <h1>About Our Online Character Counter Tool</h1>
+        <h1>About Our Text Analysis Tool</h1>
         <div
           className="accordion"
           id="accordionExample"
@@ -20,9 +20,15 @@ function AboutTextUtils(props) {
           }}
         >
           <p>
-            Our <strong>Online Character Counter Tool</strong> is a versatile and user-friendly platform designed to help users analyze and optimize their text. With this tool, you can easily count characters, words, sentences, paragraphs, and more. It allows you to format, clean, and refine your content, making it perfect for writers, students, developers, and anyone working with large amounts of text. This web-based tool ensures accurate, efficient, and real-time text analysis to support a variety of content-related tasks.
+            Our <strong>Text Analysis Tool</strong> is designed for anyone who
+            works with text. Whether you're a student, writer, or business
+            professional, this tool offers an easy way to analyze your text by
+            counting characters, words, sentences, and paragraphs. It also helps
+            clean and format your text to ensure it's professional and ready for
+            any use. It’s quick, easy, and accurate—ideal for improving the
+            quality of your writing, SEO content, and more.
           </p>
-          <h3>Key Features of Our Online Character Counter Tool:</h3>
+          <h3>Key Features of Our Text Analysis Tool:</h3>
 
           <div className="accordion-item">
             <h2 className="accordion-header">
@@ -55,7 +61,11 @@ function AboutTextUtils(props) {
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
-                Our tool allows you to count <strong>characters</strong>, <strong>words</strong>, <strong>sentences</strong>, and <strong>paragraphs</strong> in real-time. This makes it an essential resource for students, writers, and SEO specialists who need to meet specific content limits or improve the readability of their work.
+                Our tool lets you quickly count <strong>characters</strong>,{" "}
+                <strong>words</strong>, <strong>sentences</strong>, and{" "}
+                <strong>paragraphs</strong>. This feature is useful for managing
+                content length, checking for SEO compliance, or simply ensuring
+                that your writing is within specific constraints.
               </div>
             </div>
           </div>
@@ -91,7 +101,12 @@ function AboutTextUtils(props) {
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
-                Our <strong>Text Cleaning</strong> feature helps you eliminate extra spaces, remove special characters, and clean up messy text with a single click. You can also clear all text instantly to start fresh. This makes it easy to maintain well-structured, professional-looking content.
+                The <strong>Text Cleaning</strong> feature helps you remove
+                unnecessary spaces, special characters, and any unwanted
+                formatting with a click of a button. You can also clear all
+                content instantly, allowing you to start fresh every time you
+                use the tool. This ensures that your content is well-organized
+                and easy to work with.
               </div>
             </div>
           </div>
@@ -112,7 +127,7 @@ function AboutTextUtils(props) {
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
-                SEO-Optimized Content Analysis
+                SEO Content Optimization
               </button>
             </h2>
             <div
@@ -127,11 +142,14 @@ function AboutTextUtils(props) {
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
-                Our tool helps you optimize your content for <strong>SEO</strong> by providing valuable insights into word count, character count, and readability. This is ideal for content creators, digital marketers, and web developers who want to ensure their text meets SEO guidelines and attracts search engines.
+                Our tool provides insights into optimizing your text for{" "}
+                <strong>SEO</strong> by evaluating your word and character
+                count. This feature is great for digital marketers, bloggers,
+                and content creators who want to ensure their content is
+                search-engine friendly and adheres to SEO best practices.
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
