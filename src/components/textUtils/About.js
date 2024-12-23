@@ -25,21 +25,25 @@ function About(props) {
         paragraphs, providing an instant breakdown of your text. This real-time
         feedback ensures you're always in control of your content, making it
         ideal for anyone working with large amounts of text. Make Your Content
-        </p>
-        <strong>SEO-Ready:</strong> 
-        <p>Whether you're optimizing for SEO or
-        refining your blog post, the tool provides valuable insights into your
-        content’s structure, helping you ensure it meets search engine
-        requirements. Perfect for</p>
-        <strong> Multiple Uses: </strong>
-        <p>From students writing essays to
-        developers working with code, our platform can handle it all. It’s an
-        all-in-one solution to count, format, clean, and enhance your text on
-        the fly. User-Centric</p>
-        <strong>Experience: </strong>
-        <p>Designed with simplicity in mind, our tool
-        is easy to use on any device—desktop, tablet, or smartphone—ensuring you
-        can access it anytime, anywhere.</p>
+      </p>
+      <strong>SEO-Ready:</strong>
+      <p>
+        Whether you're optimizing for SEO or refining your blog post, the tool
+        provides valuable insights into your content’s structure, helping you
+        ensure it meets search engine requirements. Perfect for
+      </p>
+      <strong> Multiple Uses: </strong>
+      <p>
+        From students writing essays to developers working with code, our
+        platform can handle it all. It’s an all-in-one solution to count,
+        format, clean, and enhance your text on the fly. User-Centric
+      </p>
+      <strong>Experience: </strong>
+      <p>
+        Designed with simplicity in mind, our tool is easy to use on any
+        device—desktop, tablet, or smartphone—ensuring you can access it
+        anytime, anywhere.
+      </p>
       <h3>Key Features:</h3>
       <p>
         {" "}
@@ -91,6 +95,12 @@ function About(props) {
         performance, and the most user-friendly experience. Whether you're using
         it for a school project, a marketing campaign, or a personal writing
         project, there’s always a reason to come back—get more done, faster!
+      </p>
+      <h3>Which Devices Does the Counter Work On?</h3>
+      <p>
+        Character Count Online works on absolutely any device. Whether you have
+        a mobile phone, computer, console, or tablet, the counter will work
+        perfectly!
       </p>
       {/* <h3>About Our Online Character Counter Tool</h3>
       <p>

@@ -252,7 +252,10 @@ function TextForm(props) {
             {text.length > 0 ? text : "Enter Something to Preview"}
           </p>
         </div>
-        <div className="container mt-3">
+        <div className="container mt-3"  style={{
+            backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+            color: props.mode === "light" ? "black" : "white",
+          }}>
           <WordDensity text={text} />
         </div>
 
