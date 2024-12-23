@@ -2,6 +2,64 @@ import React, { useState } from "react";
 import AboutTextUtils from "./AboutTextUtils";
 import About from "./About";
 
+function WordDensity({ text }) {
+  const calculateWordDensity = (text) => {
+    // Normalize the text to lowercase and split it into words
+    const normalizedText = text.toLowerCase().trim();
+
+    // Split by spaces and filter out any empty strings (including from spaces)
+    const words = normalizedText.split(/\s+/).filter(Boolean); // Remove empty words
+
+    if (words.length === 0) return {}; // No words, return an empty object
+
+    // Create an object to store the frequency of each word
+    const wordCount = {};
+
+    // Count the occurrences of each word
+    words.forEach((word) => {
+      if (wordCount[word]) {
+        wordCount[word] += 1;
+      } else {
+        wordCount[word] = 1;
+      }
+    });
+
+    // Calculate the word density for each word and store in a new object
+    const wordDensity = {};
+    const totalWords = words.length;
+
+    for (const word in wordCount) {
+      wordDensity[word] = {
+        count: wordCount[word],
+        percentage: ((wordCount[word] / totalWords) * 100).toFixed(2),
+      };
+    }
+
+    return wordDensity;
+  };
+
+  const wordDensities = calculateWordDensity(text);
+
+  return (
+    <div>
+      {Object.keys(wordDensities).length > 0 && (
+        <div>
+          <h3>Word Density</h3>
+          <ul>
+            {Object.entries(wordDensities).map(
+              ([word, { count, percentage }]) => (
+                <li key={word}>
+                  {word}: <strong>{count} times </strong>({percentage}%)
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function TextForm(props) {
   const [text, setText] = useState("");
   const [findText, setFindText] = useState("");
@@ -13,7 +71,7 @@ function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
-    props.showAlert("Convented to UpperCase", "success");
+    props.showAlert("Converted to UpperCase", "success");
   };
   const handleloClick = () => {
     let newText = text.toLowerCase();
@@ -28,7 +86,7 @@ function TextForm(props) {
     let text = document.getElementById("entertexthere");
     text.select();
     navigator.clipboard.writeText(text.value);
-    props.showAlert("Coppied to Clipboard!", "success");
+    props.showAlert("Copied to Clipboard!", "success");
   };
   const handleRemoveExtraSpaceClick = () => {
     let newText = text.split(/[ ]+/);
@@ -80,7 +138,7 @@ function TextForm(props) {
           placeholder="Enter Text to Utilize"
           // style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}
         />
-<button
+        <button
           type="button"
           className="btn btn-primary m-2"
           onClick={handleCopyClick}
@@ -91,7 +149,7 @@ function TextForm(props) {
         <button
           type="button"
           className="btn btn-danger m-2"
-          // onClick={handleClearClick}
+          onClick={handleClearClick}
           data-bs-toggle="modal"
           data-bs-target="#exampleModal1"
           disabled={text.length === 0}
@@ -108,7 +166,7 @@ function TextForm(props) {
         >
           Replace Words
         </button>
-        
+
         <button
           type="button"
           className="btn btn-primary m-2"
@@ -126,7 +184,6 @@ function TextForm(props) {
           Convert to Lowercase
         </button>
 
-        
         <button
           type="button"
           className="btn btn-primary m-2"
@@ -143,8 +200,6 @@ function TextForm(props) {
         >
           Remove Special Characters
         </button>
-       
-      
       </div>
       <div className="main-wrapper">
         <div
@@ -197,6 +252,10 @@ function TextForm(props) {
             {text.length > 0 ? text : "Enter Something to Preview"}
           </p>
         </div>
+        <div className="container mt-3">
+          <WordDensity text={text} />
+        </div>
+
         <div className="about-container">
           <About mode={props.mode} />
         </div>
