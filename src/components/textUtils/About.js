@@ -102,6 +102,20 @@ function About(props) {
         a mobile phone, computer, console, or tablet, the counter will work
         perfectly!
       </p>
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2261802900205848"
+        crossorigin="anonymous"
+      ></script>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block", textAlign: "center" }}
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-2261802900205848"
+        data-ad-slot={5409789139}
+      />
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       {/* <h3>About Our Online Character Counter Tool</h3>
       <p>
         Our <strong>Online Character Counter Tool</strong> is a versatile and
