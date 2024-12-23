@@ -5,7 +5,7 @@ function About(props) {
   return (
     <div
       style={{
-        backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+        backgroundColor: props.mode === "light" ? "white" : "#21292C",
         color: props.mode === "light" ? "black" : "white",
       }}
     >

@@ -122,7 +122,7 @@ function TextForm(props) {
       <div
         className=" container mb-3"
         style={{
-          backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+          backgroundColor: props.mode === "light" ? "white" : "#21292C",
           color: props.mode === "light" ? "black" : "white",
         }}
       >
@@ -136,7 +136,7 @@ function TextForm(props) {
           value={text}
           onChange={hanldleTextChange}
           placeholder="Enter Text to Utilize"
-          // style={{backgroundColor: props.mode==='light'?'white':'#0b2240', color : props.mode==='light'?'black':'white'}}
+          // style={{backgroundColor: props.mode==='light'?'white':'#21292C', color : props.mode==='light'?'black':'white'}}
         />
         <button
           type="button"
@@ -220,7 +220,7 @@ function TextForm(props) {
         <div
           className="container"
           style={{
-            backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+            backgroundColor: props.mode === "light" ? "white" : "#21292C",
             color: props.mode === "light" ? "black" : "white",
           }}
         >
@@ -280,7 +280,7 @@ function TextForm(props) {
         <div
           className="container mt-3"
           style={{
-            backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+            backgroundColor: props.mode === "light" ? "white" : "#21292C",
             color: props.mode === "light" ? "black" : "white",
           }}
         >

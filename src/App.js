@@ -24,7 +24,7 @@ function App() {
     if (mode === "light") {
       setMode("dark");
       setSwitchText("Enable Light Mode");
-      document.body.style.backgroundColor = "#0b2240";
+      document.body.style.backgroundColor = "#21292C";
       showAlert("Dark Mode is Enabled", "success");
     } else {
       setMode("light");
@@ -68,7 +68,7 @@ function App() {
       />
       <div className="container my-2">
       <h1  style={{
-                  backgroundColor: mode === "light" ? "white" : "#0b2240",
+                  backgroundColor: mode === "light" ? "white" : "#21292C",
                   color: mode === "light" ? "black" : "white",
                 }}>Online Character Counter Tool</h1> 
 

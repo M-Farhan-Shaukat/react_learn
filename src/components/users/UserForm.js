@@ -67,7 +67,7 @@ function UserForm(props) {
   return (
     <>
       <form className="row g-3"  style={{
-          backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+          backgroundColor: props.mode === "light" ? "white" : "#21292C",
           color: props.mode === "light" ? "black" : "white",
         }}>
         <div className="col-md-6">

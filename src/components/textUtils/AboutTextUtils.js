@@ -6,7 +6,7 @@ function AboutTextUtils(props) {
       <div
         className="container"
         style={{
-          backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+          backgroundColor: props.mode === "light" ? "white" : "#21292C",
           color: props.mode === "light" ? "black" : "white",
         }}
       >
@@ -15,7 +15,7 @@ function AboutTextUtils(props) {
           className="accordion"
           id="accordionExample"
           style={{
-            backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+            backgroundColor: props.mode === "light" ? "white" : "#21292C",
             color: props.mode === "light" ? "black" : "white",
           }}
         >
@@ -42,7 +42,7 @@ function AboutTextUtils(props) {
                 aria-expanded="true"
                 aria-controls="collapseOne"
                 style={{
-                  backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+                  backgroundColor: props.mode === "light" ? "white" : "#21292C",
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
@@ -57,7 +57,7 @@ function AboutTextUtils(props) {
               <div
                 className="accordion-body"
                 style={{
-                  backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+                  backgroundColor: props.mode === "light" ? "white" : "#21292C",
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
@@ -82,7 +82,7 @@ function AboutTextUtils(props) {
                 aria-expanded="false"
                 aria-controls="collapseTwo"
                 style={{
-                  backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+                  backgroundColor: props.mode === "light" ? "white" : "#21292C",
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
@@ -97,7 +97,7 @@ function AboutTextUtils(props) {
               <div
                 className="accordion-body"
                 style={{
-                  backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+                  backgroundColor: props.mode === "light" ? "white" : "#21292C",
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
@@ -123,7 +123,7 @@ function AboutTextUtils(props) {
                 aria-expanded="false"
                 aria-controls="collapseThree"
                 style={{
-                  backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+                  backgroundColor: props.mode === "light" ? "white" : "#21292C",
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
@@ -138,7 +138,7 @@ function AboutTextUtils(props) {
               <div
                 className="accordion-body"
                 style={{
-                  backgroundColor: props.mode === "light" ? "white" : "#0b2240",
+                  backgroundColor: props.mode === "light" ? "white" : "#21292C",
                   color: props.mode === "light" ? "black" : "white",
                 }}
               >
