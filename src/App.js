@@ -72,7 +72,7 @@ function App() {
                   color: mode === "light" ? "black" : "white",
                 }}>Online Character Counter Tool</h1> 
 
-        <Alert alert={alert} />
+        {/* <Alert alert={alert} /> */}
         <Routes>
           <Route
             exact
