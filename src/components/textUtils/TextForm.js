@@ -117,6 +117,12 @@ function TextForm(props) {
     .trim()
     .split(/\s+/)
     .filter((word) => word !== "").length;
+
+    function countSentences(text) {
+      // Regular expression to match sentence-ending punctuation (. ! ?)
+      const sentences = text.split(/[.!?]+/).filter(Boolean);
+      return sentences.length;
+  }
   return (
     <>
       <div
@@ -239,7 +245,7 @@ function TextForm(props) {
               <span>SENTENCES</span>
               <span>
                 {" "}
-                {text.split("\n").filter((line) => line.trim() !== "").length}
+               {countSentences(text)}
               </span>
             </div>
             <div className="stat">
