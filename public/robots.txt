@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://charactercounter.infy.uk/sitemap.xml
+Sitemap: https://charcount-lime.vercel.app/sitemap.xml
