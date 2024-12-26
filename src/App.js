@@ -46,11 +46,11 @@ function App() {
     {`
      "@context": "https://schema.org",
         "@type": "WebSite",
-        "url": "https://charcount-lime.vercel.app/",
+        "url": "http://charactercounter.infy.uk/",
         "name": "Character Count Tool",
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://charcount-lime.vercel.app/?search={search_term_string}",
+          "target": "http://charactercounter.infy.uk/?search={search_term_string}",
           "query-input": "required name=search_term_string"
         }
     `}
