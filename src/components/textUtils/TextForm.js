@@ -155,7 +155,7 @@ function TextForm(props) {
         <button
           type="button"
           className="btn btn-danger m-2"
-          onClick={handleClearClick}
+          // onClick={handleClearClick}
           data-bs-toggle="modal"
           data-bs-target="#exampleModal1"
           disabled={text.length === 0}
