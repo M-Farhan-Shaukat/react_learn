@@ -41,22 +41,8 @@ function App() {
 
   return (
     <>
-  <Helmet>
-  <script type="application/ld+json">
-    {`
-     "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": "https://charcount-lime.vercel.app/",
-        "name": "Character Count Tool",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://charcount-lime.vercel.app/?search={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-    `}
-  </script>
-        <title>Character Counter - Count Characters Instantly</title>
-      </Helmet>
+         <title>Character Counter - Count Characters Instantly</title>
+     
       <NavBar
         title="CVM"
         NavHeadings={NavHeadings}
@@ -67,12 +53,7 @@ function App() {
         switchText={switchText}
       />
       <div className="container my-2">
-      <h1  style={{
-                  backgroundColor: mode === "light" ? "white" : "#21292C",
-                  color: mode === "light" ? "black" : "white",
-                }}>Online Character Counter Tool</h1> 
-
-        {/* <Alert alert={alert} /> */}
+            <Alert alert={alert} />
         <Routes>
           <Route
             exact

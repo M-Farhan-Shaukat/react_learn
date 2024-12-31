@@ -16,9 +16,9 @@ function NavBar(props) {
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/">{props.NavHeadings.home}</Link>
                         </li>
-                        {/* <li className="nav-item">
+                        <li className="nav-item">
                             <Link className="nav-link" to="/about">{props.NavHeadings.about}</Link>
-                        </li> */}
+                        </li>
                     </ul>
 
                     {/* Sun/Moon Icon Toggle */}

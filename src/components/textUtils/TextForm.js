@@ -132,6 +132,7 @@ function TextForm(props) {
           color: props.mode === "light" ? "black" : "white",
         }}
       >
+        <h1>Online Character Counter Tool</h1>
         <h2>Count Characters, Words, Sentences & More</h2>
 
         <h3 className="">Enter text below to analyze.</h3>
@@ -207,21 +208,6 @@ function TextForm(props) {
           Remove Special Characters
         </button>
       </div>
-
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2261802900205848"
-        crossorigin="anonymous"
-      ></script>
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-format="autorelaxed"
-        data-ad-client="ca-pub-2261802900205848"
-        data-ad-slot={7004812533}
-      />
-
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       <div className="main-wrapper">
         <div
           className="container"
@@ -264,20 +250,6 @@ function TextForm(props) {
               <span>{text.split(" ").length - 1}</span>
             </div>
           </div>
-
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2261802900205848"
-            crossorigin="anonymous"
-          ></script>
-
-          <ins
-            class="adsbygoogle"
-            style={{ display: "inline-block", width: "728px", height: "90px" }}
-            data-ad-client="ca-pub-2261802900205848"
-            data-ad-slot="4838943492"
-          ></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
           <h1 className="">Preview Your Text </h1>
           <p className="">
             {text.length > 0 ? text : "Enter Something to Preview"}
@@ -296,21 +268,6 @@ function TextForm(props) {
         <div className="about-container">
           <About mode={props.mode} />
         </div>
-
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2261802900205848"
-          crossorigin="anonymous"
-        ></script>
-        <ins
-          class="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-format="fluid"
-          data-ad-layout-key="-ef+6k-30-ac+ty"
-          data-ad-client="ca-pub-2261802900205848"
-          data-ad-slot="7747080382"
-        ></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
       <div>
         <div
