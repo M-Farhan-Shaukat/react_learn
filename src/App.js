@@ -44,7 +44,7 @@ function App() {
          <title>Character Counter - Count Characters Instantly</title>
      
       <NavBar
-        title="CVM"
+        title="CC"
         NavHeadings={NavHeadings}
         searchPlaceholder="Search User"
         searchButtonName="Search"
