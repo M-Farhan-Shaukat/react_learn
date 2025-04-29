@@ -16,17 +16,27 @@ function PdfToBase64Converter(props) {
 
     const reader = new FileReader();
     reader.onload = () => {
-      setBase64String(reader.result); // Includes MIME prefix
+      const fullBase64 = reader.result || '';
+      const cleanedBase64 = fullBase64.replace(/^data:application\/pdf;base64,/, '');
+      setBase64String(cleanedBase64);
     };
     reader.readAsDataURL(file);
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(base64String).then(() => {
+      alert('Base64 copied to clipboard!');
+    });
   };
 
   return (
     <div style={{ padding: '20px', maxWidth: '600px', margin: 'auto' }}>
       <h2 style={{
-          backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
-          color: props.mode === 'light' ? 'black' : 'white',
-        }} >PDF to Base64 Converter</h2>
+        backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
+        color: props.mode === 'light' ? 'black' : 'white',
+      }}>
+        PDF to Base64 Converter
+      </h2>
 
       {/* Hidden Input */}
       <input
@@ -60,15 +70,30 @@ function PdfToBase64Converter(props) {
       {base64String && (
         <>
           <h4 style={{
-          backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
-          color: props.mode === 'light' ? 'black' : 'white',
-        }} >Base64 string of: {fileName}</h4>
+            backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
+            color: props.mode === 'light' ? 'black' : 'white',
+          }}>
+            Base64 string of: {fileName}
+          </h4>
           <textarea
             rows="10"
             style={{ width: '100%' }}
             readOnly
             value={base64String}
           />
+          <button
+            onClick={copyToClipboard}
+            style={{
+              marginTop: '10px',
+              padding: '10px 20px',
+              backgroundColor: '#007BFF',
+              color: 'white',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
+            Copy to Clipboard
+          </button>
         </>
       )}
     </div>
