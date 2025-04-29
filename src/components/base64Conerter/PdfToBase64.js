@@ -8,7 +8,7 @@ function PdfToBase64Converter(props) {
   const handlePdfUpload = (event) => {
     const file = event.target.files[0];
     if (!file || file.type !== 'application/pdf') {
-      alert('Please select a valid PDF file.');
+        props.showAlert("Please select a valid PDF file.", "info");
       return;
     }
 
@@ -25,7 +25,8 @@ function PdfToBase64Converter(props) {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(base64String).then(() => {
-      alert('Base64 copied to clipboard!');
+        props.showAlert("Base64 copied to clipboard!", "success");
+      
     });
   };
 
