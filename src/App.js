@@ -9,6 +9,7 @@ import UserForm from "./components/users/UserForm";
 import UserTable from "./components/users/UserTable";
 import { Helmet } from 'react-helmet';
 import Base64ToPdfConverter from "./components/base64Conerter/Base64ToPdf";
+import PdfToBase64Converter from "./components/base64Conerter/PdfToBase64";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -38,7 +39,8 @@ function App() {
     users: "Users",
     about: "About us",
     home: "Home",
-    base64topdf: "Base65 to PDF",
+    base64topdf: "Base64 to PDF",
+    pdftobase64: "PDF to Base64",
   };
 
   return (
@@ -67,7 +69,8 @@ function App() {
           <Route exact path="/users" element={<UserTable mode={mode}/>} />
           <Route exact path="/create-user" element={<UserForm mode={mode}/>} />
 
-          <Route exact path="/base64-pdf" element={<Base64ToPdfConverter mode={mode}/>} />
+          <Route exact path="/base64-pdf" element={<Base64ToPdfConverter showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/pdf-base64" element={<PdfToBase64Converter showAlert={showAlert}  mode={mode}/>} />
         </Routes>
       </div>
     </>

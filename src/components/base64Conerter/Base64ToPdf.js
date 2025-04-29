@@ -25,7 +25,7 @@ function Base64ToPdfConverter(props) {
 
   const previewPdf = () => {
     if (!base64String) {
-      alert('Please paste a Base64 string!');
+      props.showAlert("Please paste a Base64 string!", "danger");
       return;
     }
 
@@ -39,13 +39,15 @@ function Base64ToPdfConverter(props) {
       setPdfUrl(url);
     } catch (error) {
       console.error('Error decoding Base64:', error);
-      alert('Invalid or corrupted Base64 data!');
+      
+      props.showAlert("Please paste a Base64 string!", "danger");
     }
   };
 
   const downloadPdf = () => {
     if (!base64String) {
-      alert('Please paste a Base64 string!');
+      // alert('Please paste a Base64 string!');
+      props.showAlert("Please paste a Base64 string!", "danger");
       return;
     }
 
@@ -68,7 +70,7 @@ function Base64ToPdfConverter(props) {
       document.body.removeChild(link);
     } catch (error) {
       console.error('Error decoding Base64:', error);
-      alert('Invalid or corrupted Base64 data!');
+      props.showAlert("Invalid or corrupted Base64 data!", "danger");
     }
   };
 
@@ -125,7 +127,10 @@ function Base64ToPdfConverter(props) {
 
       {pdfUrl && (
         <div style={{ marginTop: '20px' }}>
-          <h3>PDF Preview:</h3>
+          <h3 style={{
+          backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
+          color: props.mode === 'light' ? 'black' : 'white',
+        }}>PDF Preview:</h3>
           <iframe
             title="PDF Preview"
             src={pdfUrl}
