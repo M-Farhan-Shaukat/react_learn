@@ -19,6 +19,10 @@ function NavBar(props) {
                         <li className="nav-item">
                             <Link className="nav-link" to="/about">{props.NavHeadings.about}</Link>
                         </li>
+
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/base64-pdf">{props.NavHeadings.base64topdf}</Link>
+                        </li>
                     </ul>
 
                     {/* Sun/Moon Icon Toggle */}

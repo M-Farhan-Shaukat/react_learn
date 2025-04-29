@@ -8,6 +8,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import UserForm from "./components/users/UserForm";
 import UserTable from "./components/users/UserTable";
 import { Helmet } from 'react-helmet';
+import Base64ToPdfConverter from "./components/base64Conerter/Base64ToPdf";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -37,6 +38,7 @@ function App() {
     users: "Users",
     about: "About us",
     home: "Home",
+    base64topdf: "Base65 to PDF",
   };
 
   return (
@@ -64,6 +66,8 @@ function App() {
           <Route exact path="/about" element={<AboutTextUtils mode={mode} />} />
           <Route exact path="/users" element={<UserTable mode={mode}/>} />
           <Route exact path="/create-user" element={<UserForm mode={mode}/>} />
+
+          <Route exact path="/base64-pdf" element={<Base64ToPdfConverter mode={mode}/>} />
         </Routes>
       </div>
     </>
