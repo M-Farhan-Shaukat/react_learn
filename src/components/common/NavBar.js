@@ -44,6 +44,18 @@ function NavBar(props) {
             </li>
 
             <li className="nav-item">
+              <Link className="nav-link" to="/media-base64">
+                {props.NavHeadings.mediatobase64}
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/base64-media">
+                {props.NavHeadings.base64tomedia}
+              </Link>
+            </li>
+
+            <li className="nav-item">
               <Link className="nav-link" to="/about">
                 {props.NavHeadings.about}
               </Link>
