@@ -30,12 +30,7 @@ function NavBar(props) {
                 {props.NavHeadings.home}
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                {props.NavHeadings.about}
-              </Link>
-            </li>
-
+          
             <li className="nav-item">
               <Link className="nav-link" to="/base64-pdf">
                 {props.NavHeadings.base64topdf}
@@ -47,6 +42,13 @@ function NavBar(props) {
                 {props.NavHeadings.pdftobase64}
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">
+                {props.NavHeadings.about}
+              </Link>
+            </li>
+
           </ul>
 
           {/* Sun/Moon Icon Toggle */}

@@ -38,7 +38,7 @@ function App() {
   const NavHeadings = {
     users: "Users",
     about: "About us",
-    home: "Home",
+    home: "Chracter counter",
     base64topdf: "Base64 to PDF",
     pdftobase64: "PDF to Base64",
   };

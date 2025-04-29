@@ -75,7 +75,7 @@ function Base64ToPdfConverter(props) {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '600px', margin: 'auto' }}>
+    <div  className=" container mb-3" >
       <h2
         style={{
           backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
@@ -86,8 +86,8 @@ function Base64ToPdfConverter(props) {
       </h2>
 
       <textarea
+       className="form-control"
         rows="10"
-        style={{ width: '100%' }}
         placeholder="Paste your Base64 string here..."
         value={base64String}
         onChange={(e) => {
