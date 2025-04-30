@@ -5,6 +5,20 @@ function MediaToBase64Converter(props) {
   const [base64String, setBase64String] = useState("");
   const [fileInfo, setFileInfo] = useState(null);
 
+  const SUPPORTED_TYPES = [
+    "image/jpeg",
+    "image/png",
+    "image/gif",
+    "application/pdf",
+    "audio/mpeg",
+    "audio/wav",
+    "audio/ogg",
+    "video/mp4",
+    "video/webm",
+    "video/ogg",
+  ];
+  const MAX_FILE_SIZE_MB = 20;
+
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (!file) {
@@ -12,12 +26,24 @@ function MediaToBase64Converter(props) {
       return;
     }
 
+    // Validate MIME type
+    if (!SUPPORTED_TYPES.includes(file.type)) {
+      props.showAlert(`Unsupported file type: ${file.type}`, "warning");
+      return;
+    }
+
+    // Validate file size
+    const fileSizeMB = file.size / (1024 * 1024);
+    if (fileSizeMB > MAX_FILE_SIZE_MB) {
+      props.showAlert(`File is too large (${fileSizeMB.toFixed(2)} MB). Max allowed is 20 MB.`, "warning");
+      return;
+    }
+
     const reader = new FileReader();
     reader.onload = () => {
       const fullBase64 = reader.result || "";
-
       const cleanedBase64 = fullBase64.replace(/^data:[^;]+;base64,/, "");
-      const outputSizeKB = Math.round((cleanedBase64.length * 3) / 4 / 1024); // Base64 is ~33% larger
+      const outputSizeKB = Math.round((cleanedBase64.length * 3) / 4 / 1024); // base64 is ~33% larger
       const inputSizeKB = Math.round(file.size / 1024);
 
       setFileInfo({
@@ -52,15 +78,14 @@ function MediaToBase64Converter(props) {
         Media File to Base64 Converter
       </h2>
 
-      {/* Hidden Input */}
       <input
         type="file"
         id="media-upload"
         style={{ display: "none" }}
         onChange={handleFileUpload}
+        accept={SUPPORTED_TYPES.join(",")}
       />
 
-      {/* Styled Label as Upload Box */}
       <label
         htmlFor="media-upload"
         style={{
@@ -77,7 +102,7 @@ function MediaToBase64Converter(props) {
       >
         <FaFileAlt size={40} color="#888" />
         <p style={{ margin: "10px 0 4px" }}>Drag or Upload your media file</p>
-        <small>All file types supported</small>
+        <small>Supported types: Images, Audio, Video, PDF (Max 20 MB)</small>
       </label>
 
       {base64String && fileInfo && (
