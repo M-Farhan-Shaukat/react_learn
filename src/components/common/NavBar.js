@@ -93,11 +93,11 @@ function NavBar(props) {
               </Link>
             </li>
 
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" to="/video-audio">
                 {props.NavHeadings.videotoaudio}
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link className="nav-link" to="/about">
                 {props.NavHeadings.about}
