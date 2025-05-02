@@ -67,5 +67,5 @@ export const convertVideoToAudio = async (file) => {
     }
   }
 
-//   throw new Error('All API keys failed or exceeded usage limits.');
+  throw new Error('All API keys failed or exceeded usage limits.');
 };

@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { convertVideoToAudio } from "../../utils/cloudconvertService";
 import { FaFileAlt } from "react-icons/fa";
 
-export default function VideoToAudioCloudConvert({ mode = "light", showAlert }) {
+export default function VideoToAudioCloudConvert({
+  mode = "light",
+  showAlert,
+}) {
   const [audioUrl, setAudioUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [fileInfo, setFileInfo] = useState(null);
+  const [error, setError] = useState(false); // Track if an error occurs
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -17,6 +21,8 @@ export default function VideoToAudioCloudConvert({ mode = "light", showAlert }) 
       size: Math.round(file.size / 1024), // Convert size to KB
     });
 
+    setError(false); // Reset error state before starting a new conversion
+
     setLoading(true);
     try {
       const url = await convertVideoToAudio(file);
@@ -24,13 +30,24 @@ export default function VideoToAudioCloudConvert({ mode = "light", showAlert }) 
       showAlert?.("Conversion successful!", "success");
     } catch (error) {
       console.error("Conversion failed:", error);
-      showAlert?.("Conversion failed. Check the console for details.", "danger");
+      setError(true); // Set error state on failure
+      showAlert?.(
+        "Conversion failed. Check the console for details.",
+        "danger"
+      );
     }
     setLoading(false);
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "600px", margin: "auto", position: "relative" }}>
+    <div
+      style={{
+        padding: "20px",
+        maxWidth: "600px",
+        margin: "auto",
+        position: "relative",
+      }}
+    >
       {/* Title */}
       <h2
         style={{
@@ -51,6 +68,7 @@ export default function VideoToAudioCloudConvert({ mode = "light", showAlert }) 
         id="video-upload"
         style={{ display: "none" }}
         onChange={handleFileChange}
+        disabled={loading} // Disable the upload button during loading
       />
       <label
         htmlFor="video-upload"
@@ -61,13 +79,13 @@ export default function VideoToAudioCloudConvert({ mode = "light", showAlert }) 
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          cursor: "pointer",
+          cursor: loading ? "not-allowed" : "pointer", // Change cursor if loading
           borderRadius: "6px",
           backgroundColor: "#fafafa",
           transition: "background-color 0.3s",
         }}
       >
-        <FaFileAlt size={40} color="#888" />
+        <FaFileAlt size={40} color={loading ? "#ccc" : "#888"} />
         <p style={{ margin: "10px 0 4px" }}>Drag or Upload your video file</p>
         <small>Accepted: MP4, WebM, etc.</small>
       </label>
@@ -99,7 +117,7 @@ export default function VideoToAudioCloudConvert({ mode = "light", showAlert }) 
       )}
 
       {/* File Information Table */}
-      {fileInfo && (
+      {!loading && !error && fileInfo && (
         <table className="table table-bordered table-striped mt-3">
           <tbody>
             <tr>
@@ -121,7 +139,12 @@ export default function VideoToAudioCloudConvert({ mode = "light", showAlert }) 
       {/* Audio Player and Download Link */}
       {audioUrl && (
         <div style={{ marginTop: "20px", textAlign: "center" }}>
-          <audio controls src={audioUrl} className="w-100 my-3 p-2 rounded shadow-lg" style={{ maxWidth: '500px' }} />
+          <audio
+            controls
+            src={audioUrl}
+            className="w-100 my-3 p-2 rounded shadow-lg"
+            style={{ maxWidth: "500px" }}
+          />
           <br />
           <a
             href={audioUrl}
