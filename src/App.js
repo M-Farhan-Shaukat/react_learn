@@ -12,6 +12,7 @@ import Base64ToPdfConverter from "./components/base64Conerter/Base64ToPdf";
 import PdfToBase64Converter from "./components/base64Conerter/PdfToBase64";
 import Base64ToMediaConverter from "./components/base64Conerter/Base64ToMedia";
 import MediaToBase64Converter from "./components/base64Conerter/MediaToBase64";
+import VideoToAudioConverter from "./components/MediaConverter/VideoToAudioConverter";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -45,6 +46,7 @@ function App() {
     pdftobase64: "PDF to Base64",
     mediatobase64: "Media to Base64",
     base64tomedia: "Base64 to Media",
+    videotoaudio: "Video to MP3",
   };
 
   return (
@@ -77,6 +79,7 @@ function App() {
           <Route exact path="/pdf-base64" element={<PdfToBase64Converter showAlert={showAlert}  mode={mode}/>} />
           <Route exact path="/base64-media" element={<Base64ToMediaConverter showAlert={showAlert}  mode={mode}/>} />
           <Route exact path="/media-base64" element={<MediaToBase64Converter showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/video-audio" element={<VideoToAudioConverter showAlert={showAlert}  mode={mode}/>} />
         </Routes>
       </div>
     </>
