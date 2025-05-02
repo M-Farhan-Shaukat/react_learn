@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { FaSun, FaMoon } from "react-icons/fa"; // Import icons from react-icons
+import { Link, useLocation } from "react-router-dom";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 function NavBar(props) {
+  const collapseRef = useRef(null);
+  const location = useLocation();
+
+  // Closes the navbar collapse menu
+  const closeNavbar = () => {
+    const collapse = collapseRef.current;
+    if (collapse && collapse.classList.contains("show")) {
+      new window.bootstrap.Collapse(collapse, { toggle: false }).hide();
+    }
+  };
+
+  // Close on outside click
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        collapseRef.current &&
+        collapseRef.current.classList.contains("show") &&
+        !collapseRef.current.contains(event.target)
+      ) {
+        closeNavbar();
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  // Close on route change
+  React.useEffect(() => {
+    closeNavbar();
+  }, [location]);
+
   return (
     <nav
       className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
@@ -23,14 +57,18 @@ function NavBar(props) {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          className="collapse navbar-collapse"
+          id="navbarSupportedContent"
+          ref={collapseRef}
+        >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/">
                 {props.NavHeadings.home}
               </Link>
             </li>
-          
+
             <li className="nav-item">
               <Link className="nav-link" to="/base64-pdf">
                 {props.NavHeadings.base64topdf}
@@ -60,7 +98,6 @@ function NavBar(props) {
                 {props.NavHeadings.about}
               </Link>
             </li>
-
           </ul>
 
           {/* Sun/Moon Icon Toggle */}
@@ -73,7 +110,10 @@ function NavBar(props) {
               fontSize: "15px",
               marginRight: "10px",
             }}
-            onClick={props.toggleMode}
+            onClick={() => {
+              props.toggleMode();
+              closeNavbar(); // Optional: also close on mode toggle
+            }}
           >
             {props.mode === "light" ? (
               <FaMoon color="#4A4A4A" title="Switch to Dark Mode" />
@@ -88,8 +128,6 @@ function NavBar(props) {
   );
 }
 
-export default NavBar;
-
 NavBar.propTypes = {
   title: PropTypes.string.isRequired,
   NavHeadings: PropTypes.object.isRequired,
@@ -97,3 +135,5 @@ NavBar.propTypes = {
   mode: PropTypes.string.isRequired,
   toggleMode: PropTypes.func.isRequired,
 };
+
+export default NavBar;
