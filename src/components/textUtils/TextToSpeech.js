@@ -212,7 +212,7 @@ const TextToSpeech = ({ mode = 'light', showAlert }) => {
           }}
         >
           <option value="">Auto-select</option>
-          {voices.map((voice) => (
+          {voices.map((voice) => ( 
             <option key={voice.name} value={voice.name}>
               {voice.name} ({voice.lang})
             </option>
