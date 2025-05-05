@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { franc } from 'franc';
+import { FaMicrophone } from 'react-icons/fa';
 
-const TextToSpeech = () => {
+const TextToSpeech = ({ mode = 'light', showAlert }) => {
   const [text, setText] = useState('');
   const [voices, setVoices] = useState([]);
   const [detectedLang, setDetectedLang] = useState('');
@@ -9,16 +10,18 @@ const TextToSpeech = () => {
   const [pitch, setPitch] = useState(1);
   const [selectedVoice, setSelectedVoice] = useState(null);
   const [isUrduAvailable, setIsUrduAvailable] = useState(false);
-  const mediaRecorderRef = useRef(null);
-  const audioChunksRef = useRef([]);
-  const audioUrlRef = useRef(null);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [speakingIndex, setSpeakingIndex] = useState(null);
+
+  const utteranceRef = useRef(null);
+  const isCancelled = useRef(false);
+  const speechQueue = useRef([]);
 
   useEffect(() => {
     const loadVoices = () => {
       const synthVoices = window.speechSynthesis.getVoices();
       setVoices(synthVoices);
 
-      // Check for Urdu support
       const urduVoice = synthVoices.find((v) => v.lang.startsWith('ur'));
       setIsUrduAvailable(!!urduVoice);
 
@@ -32,13 +35,10 @@ const TextToSpeech = () => {
     loadVoices();
   }, []);
 
-  // Detect language of the input text
   const detectLanguage = (inputText) => {
-    const langCode = franc(inputText);
-    return langCode;
+    return franc(inputText);
   };
 
-  // Map the detected language code to an appropriate voice
   const mapLangCodeToVoice = (langCode) => {
     if (!voices.length) return null;
 
@@ -52,14 +52,11 @@ const TextToSpeech = () => {
       'Samantha',
     ];
 
-    // Check for Urdu voice
     if (langPrefix === 'ur') {
       const urduVoice = voices.find((voice) => voice.lang.startsWith('ur'));
       if (urduVoice) return urduVoice;
-      else {
-        alert('Urdu voice is not available in this browser.');
-        return voices[0]; // fallback to first available voice
-      }
+      showAlert?.('Urdu voice not available in this browser.', 'warning');
+      return voices[0];
     }
 
     const match = voices.find(
@@ -71,89 +68,148 @@ const TextToSpeech = () => {
     return match || voices.find((voice) => voice.lang.toLowerCase().startsWith(langPrefix)) || voices[0];
   };
 
-  // Handle speech synthesis (speech from text)
-  const handleSpeak = async () => {
+  const splitText = (input) => {
+    return input.match(/[^.!?]+[.!?]+|\s*$/g)?.filter(Boolean) || [];
+  };
+
+  const handleSpeak = () => {
     if (!text.trim()) return;
 
-    window.speechSynthesis.cancel(); // stop any current speech
+    window.speechSynthesis.cancel();
+    isCancelled.current = false;
+    setIsSpeaking(true);
+
     const langCode = detectLanguage(text);
     setDetectedLang(langCode);
 
-    const utterance = new SpeechSynthesisUtterance(text);
     const voiceToUse = selectedVoice || mapLangCodeToVoice(langCode);
+    const chunks = splitText(text);
+    speechQueue.current = [...chunks];
 
-    if (voiceToUse) {
-      utterance.voice = voiceToUse;
-      utterance.lang = voiceToUse.lang;
+    speakChunks(chunks, voiceToUse);
+  };
+
+  const speakChunks = (chunks, voice) => {
+    if (!chunks.length) {
+      setSpeakingIndex(null);
+      setIsSpeaking(false);
+      return;
     }
 
+    const chunk = chunks.shift();
+    const currentIndex = speechQueue.current.length - chunks.length - 1;
+    setSpeakingIndex(currentIndex);
+
+    utteranceRef.current = new SpeechSynthesisUtterance(chunk.trim());
+    const utterance = utteranceRef.current;
+
+    utterance.voice = voice;
+    utterance.lang = voice.lang;
     utterance.rate = rate;
     utterance.pitch = pitch;
 
-    // Record speech
-    const stream = await navigator.mediaDevices.getDisplayMedia({ audio: true, video: false }).catch(() => null);
-    if (stream) {
-      audioChunksRef.current = [];
-      mediaRecorderRef.current = new MediaRecorder(stream);
-      mediaRecorderRef.current.ondataavailable = (event) => {
-        audioChunksRef.current.push(event.data);
-      };
-      mediaRecorderRef.current.onstop = () => {
-        const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
-        const url = URL.createObjectURL(blob);
-        audioUrlRef.current = url;
-      };
-      mediaRecorderRef.current.start();
-    }
-
     utterance.onend = () => {
-      if (mediaRecorderRef.current) {
-        mediaRecorderRef.current.stop();
+      if (isCancelled.current) {
+        setIsSpeaking(false);
+        setSpeakingIndex(null);
+        return;
       }
+      speakChunks(chunks, voice);
+    };
+
+    utterance.onerror = () => {
+      setIsSpeaking(false);
+      setSpeakingIndex(null);
+      showAlert?.('Speech error occurred.', 'error');
     };
 
     window.speechSynthesis.speak(utterance);
   };
 
-  // Handle speech stop
   const handleStop = () => {
+    isCancelled.current = true;
     window.speechSynthesis.cancel();
-    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
-      mediaRecorderRef.current.stop();
-    }
-  };
-
-  // Handle downloading audio
-  const handleDownload = () => {
-    if (audioUrlRef.current) {
-      const a = document.createElement('a');
-      a.href = audioUrlRef.current;
-      a.download = 'speech.webm';
-      a.click();
-    } else {
-      alert('No recording available. Please speak first.');
-    }
+    setIsSpeaking(false);
+    setSpeakingIndex(null);
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>🌐 Text to Speech (All Devices Supported)</h2>
+    <div
+      style={{
+        padding: '20px',
+        maxWidth: '600px',
+        margin: 'auto',
+        position: 'relative',
+      }}
+    >
+      <h2
+        style={{
+          backgroundColor: mode === 'light' ? 'white' : '#21292C',
+          color: mode === 'light' ? 'black' : 'white',
+          padding: '10px',
+          borderRadius: '8px',
+          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        Text to Speech
+      </h2>
 
       <textarea
-        rows="4"
-        cols="60"
+        rows="5"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Type in any language..."
+        placeholder="Type or paste text here..."
+        style={{
+          width: '100%',
+          padding: '10px',
+          marginTop: '20px',
+          borderRadius: '6px',
+          border: '1px solid #ccc',
+        }}
+        disabled={isSpeaking}
       />
+
+      {/* Displayed highlighted sentences */}
+      {text.trim() && (
+        <div
+          style={{
+            marginTop: '10px',
+            padding: '10px',
+            border: '1px solid #eee',
+            borderRadius: '6px',
+            backgroundColor: '#f8f9fa',
+            whiteSpace: 'pre-wrap',
+            minHeight: '60px',
+          }}
+        >
+          {splitText(text).map((sentence, index) => (
+            <span
+              key={index}
+              style={{
+                backgroundColor: index === speakingIndex ? '#ffeeba' : 'transparent',
+              }}
+            >
+              {sentence}
+            </span>
+          ))}
+        </div>
+      )}
 
       <div style={{ marginTop: '10px' }}>
         <label>Voice: </label>
         <select
+          disabled={isSpeaking}
           onChange={(e) =>
             setSelectedVoice(voices.find((v) => v.name === e.target.value))
           }
           value={selectedVoice?.name || ''}
+          style={{
+            width: '100%',
+            padding: '6px',
+            borderRadius: '6px',
+            marginTop: '6px',
+            cursor: isSpeaking ? 'not-allowed' : 'pointer',
+          }}
         >
           <option value="">Auto-select</option>
           {voices.map((voice) => (
@@ -164,40 +220,34 @@ const TextToSpeech = () => {
         </select>
       </div>
 
-      <div>
-        <label>Rate: </label>
-        <input
-          type="range"
-          min="0.5"
-          max="2"
-          step="0.1"
-          value={rate}
-          onChange={(e) => setRate(parseFloat(e.target.value))}
-        />{' '}
-        {rate}
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <button
+          onClick={handleSpeak}
+          disabled={isSpeaking}
+          className="btn btn-success"
+          style={{
+            padding: '10px 20px',
+            marginRight: '10px',
+            fontSize: '16px',
+            cursor: isSpeaking ? 'not-allowed' : 'pointer',
+          }}
+        >
+          <FaMicrophone /> Speak
+        </button>
+        <button
+          onClick={handleStop}
+          className="btn btn-danger"
+          style={{ padding: '10px 20px', fontSize: '16px' }}
+        >
+          Stop
+        </button>
       </div>
 
-      <div>
-        <label>Pitch: </label>
-        <input
-          type="range"
-          min="0"
-          max="2"
-          step="0.1"
-          value={pitch}
-          onChange={(e) => setPitch(parseFloat(e.target.value))}
-        />{' '}
-        {pitch}
-      </div>
-
-      <div style={{ marginTop: '10px' }}>
-        <button onClick={handleSpeak}>🔊 Speak</button>{' '}
-        <button onClick={handleStop}>🛑 Stop</button>{' '}
-        <button onClick={handleDownload}>⬇️ Download</button>
-      </div>
-
-      {detectedLang && <p>Detected Language Code: {detectedLang}</p>}
-      {!isUrduAvailable && <p>Urdu voice is not available in your browser.</p>}
+      {detectedLang && (
+        <div style={{ marginTop: '20px', fontStyle: 'italic' }}>
+          Detected Language Code: <strong>{detectedLang}</strong>
+        </div>
+      )}
     </div>
   );
 };
