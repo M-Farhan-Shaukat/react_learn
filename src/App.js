@@ -48,6 +48,7 @@ function App() {
     mediatobase64: "Media to Base64",
     base64tomedia: "Base64 to Media",
     videotoaudio: "Video to MP3",
+    texttospeech: "Text To Speech",
   };
 
   return (
