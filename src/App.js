@@ -13,6 +13,7 @@ import PdfToBase64Converter from "./components/base64Conerter/PdfToBase64";
 import Base64ToMediaConverter from "./components/base64Conerter/Base64ToMedia";
 import MediaToBase64Converter from "./components/base64Conerter/MediaToBase64";
 import VideoToAudioConverter from "./components/MediaConverter/VideoToAudioConverter";
+import TextToSpeech from "./components/textUtils/TextToSpeech";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -80,6 +81,7 @@ function App() {
           <Route exact path="/base64-media" element={<Base64ToMediaConverter showAlert={showAlert}  mode={mode}/>} />
           <Route exact path="/media-base64" element={<MediaToBase64Converter showAlert={showAlert}  mode={mode}/>} />
           <Route exact path="/video-audio" element={<VideoToAudioConverter showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/text-speech" element={<TextToSpeech showAlert={showAlert}  mode={mode}/>} />
         </Routes>
       </div>
     </>
