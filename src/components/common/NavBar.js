@@ -76,6 +76,12 @@ function NavBar(props) {
             </li>
 
             <li className="nav-item">
+              <Link className="nav-link" to="/base64-zip">
+                {props.NavHeadings.base64tozip}
+              </Link>
+            </li>
+
+            <li className="nav-item">
               <Link className="nav-link" to="/pdf-base64">
                 {props.NavHeadings.pdftobase64}
               </Link>
