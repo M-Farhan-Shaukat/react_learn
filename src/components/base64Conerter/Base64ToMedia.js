@@ -201,7 +201,7 @@ function Base64ToMediaConverter(props) {
           </div>
         )}
 
-        <div className="about-container" style={{ marginTop: '30px' }}>
+        <div className="about-media-container" style={{ marginTop: '30px' }}>
           <About mode={props.mode} />
         </div>
       </div>
