@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaFilePdf } from 'react-icons/fa';
+import About from './about/PdfToBase64About'; // Updated About section import
 
 function PdfToBase64Converter(props) {
   const [base64String, setBase64String] = useState('');
@@ -8,7 +9,7 @@ function PdfToBase64Converter(props) {
   const handlePdfUpload = (event) => {
     const file = event.target.files[0];
     if (!file || file.type !== 'application/pdf') {
-        props.showAlert("Please select a valid PDF file.", "info");
+      props.showAlert("Please select a valid PDF file.", "info");
       return;
     }
 
@@ -25,79 +26,103 @@ function PdfToBase64Converter(props) {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(base64String).then(() => {
-        props.showAlert("Base64 copied to clipboard!", "success");
-      
+      props.showAlert("Base64 copied to clipboard!", "success");
     });
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '600px', margin: 'auto' }}>
-      <h2 style={{
-        backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
-        color: props.mode === 'light' ? 'black' : 'white',
-      }}>
-        PDF to Base64 Converter
-      </h2>
+    <>
+      <head>
+        <title>PDF to Base64 Converter</title>
+        <meta
+          name="description"
+          content="Convert your PDF files to Base64 encoded data with this simple converter."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="PDF to Base64 Converter" />
+        <meta
+          property="og:description"
+          content="Convert your PDF files to Base64 encoded data easily."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.example.com/pdf-to-base64" />
+      </head>
 
-      {/* Hidden Input */}
-      <input
-        type="file"
-        accept="application/pdf"
-        id="pdf-upload"
-        style={{ display: 'none' }}
-        onChange={handlePdfUpload}
-      />
-
-      {/* Styled Label as Upload Box */}
-      <label
-        htmlFor="pdf-upload"
-        style={{
-          border: '2px dashed #ccc',
-          padding: '40px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          borderRadius: '6px',
-          backgroundColor: '#fafafa',
-        }}
-      >
-        <FaFilePdf size={40} color="#888" />
-        <p style={{ margin: '10px 0 4px' }}>Drag or Upload your PDF file</p>
-        <small>Only .PDF format supported</small>
-      </label>
-
-      {base64String && (
-        <>
-          <h4 style={{
+      <div className="container mb-3">
+        <h1
+          style={{
             backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
             color: props.mode === 'light' ? 'black' : 'white',
-          }}>
-            Base64 string of: {fileName}
-          </h4>
-          <textarea
-            rows="10"
-            style={{ width: '100%' }}
-            readOnly
-            value={base64String}
+          }}
+        >
+          PDF to Base64 Converter
+        </h1>
+
+        <div>
+          <input
+            type="file"
+            accept="application/pdf"
+            id="pdf-upload"
+            style={{ display: 'none' }}
+            onChange={handlePdfUpload}
           />
-          <button
-            onClick={copyToClipboard}
+          <label
+            htmlFor="pdf-upload"
             style={{
-              marginTop: '10px',
-              padding: '10px 20px',
-              backgroundColor: '#007BFF',
-              color: 'white',
-              border: 'none',
+              border: '2px dashed #ccc',
+              padding: '40px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
               cursor: 'pointer',
+              borderRadius: '6px',
+              backgroundColor: '#fafafa',
             }}
           >
-            Copy to Clipboard
-          </button>
-        </>
-      )}
-    </div>
+            <FaFilePdf size={40} color="#888" />
+            <p style={{ margin: '10px 0 4px' }}>Drag or Upload your PDF file</p>
+            <small>Only .PDF format supported</small>
+          </label>
+        </div>
+
+        {base64String && (
+          <>
+            <h4
+              style={{
+                backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
+                color: props.mode === 'light' ? 'black' : 'white',
+              }}
+            >
+              Base64 String of: {fileName}
+            </h4>
+            <textarea
+              rows="10"
+              style={{ width: '100%' }}
+              readOnly
+              value={base64String}
+            />
+            <button
+              onClick={copyToClipboard}
+              style={{
+                marginTop: '10px',
+                padding: '10px 20px',
+                backgroundColor: '#007BFF',
+                color: 'white',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              Copy to Clipboard
+            </button>
+          </>
+        )}
+
+        <div className="about-container">
+          <About mode={props.mode} />
+        </div>
+      </div>
+    </>
   );
 }
 

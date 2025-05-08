@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaFileAlt } from "react-icons/fa";
+import About from "./about/MediaToBase64About"; // Importing About section
 
 function MediaToBase64Converter(props) {
   const [base64String, setBase64String] = useState("");
@@ -68,15 +69,22 @@ function MediaToBase64Converter(props) {
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "600px", margin: "auto" }}>
-      <h2
-        style={{
-          backgroundColor: props.mode === "light" ? "white" : "#21292C",
-          color: props.mode === "light" ? "black" : "white",
-        }}
-      >
-        Media File to Base64 Converter
-      </h2>
+    <>
+      <head>
+        <title>Media File to Base64 Converter</title>
+        <meta name="description" content="Convert your media files to Base64 encoding quickly and easily. Preview and download the Base64 data." />
+      </head>
+
+      <div className="container mb-3">
+        <h1
+          style={{
+            backgroundColor: props.mode === "light" ? "white" : "#21292C",
+            color: props.mode === "light" ? "black" : "white",
+            textAlign: "center",
+          }}
+        >
+          Media to Base64 Converter
+        </h1>
 
       <input
         type="file"
@@ -89,7 +97,8 @@ function MediaToBase64Converter(props) {
       <label
         htmlFor="media-upload"
         style={{
-          border: "2px dashed #ccc",
+            padding: "20px",
+            border: "2px dashed #ccc",
           padding: "40px",
           display: "flex",
           flexDirection: "column",
@@ -98,6 +107,7 @@ function MediaToBase64Converter(props) {
           cursor: "pointer",
           borderRadius: "6px",
           backgroundColor: "#fafafa",
+            cursor: "pointer",
         }}
       >
         <FaFileAlt size={40} color="#888" />
@@ -105,64 +115,64 @@ function MediaToBase64Converter(props) {
         <small>Supported types: Images, Audio, Video, PDF (Max 20 MB)</small>
       </label>
 
-      {base64String && fileInfo && (
-        <>
-          <h4
-            style={{
-              backgroundColor: props.mode === "light" ? "white" : "#21292C",
-              color: props.mode === "light" ? "black" : "white",
-            }}
-          >
-            Base64 string of: {fileInfo.name}
-          </h4>
+        {base64String && fileInfo && (
+          <div className="file-info mt-4">
+            <h4>File Info:</h4>
+            <table className="table table-bordered table-striped">
+              <tbody>
+                <tr>
+                  <th>Filename:</th>
+                  <td>{fileInfo.name}</td>
+                </tr>
+                <tr>
+                  <th>Input File Size:</th>
+                  <td>{fileInfo.inputSize} KB</td>
+                </tr>
+                <tr>
+                  <th>Output File Size:</th>
+                  <td>{fileInfo.outputSize} KB</td>
+                </tr>
+                <tr>
+                  <th>Input MIME Type:</th>
+                  <td>{fileInfo.inputType}</td>
+                </tr>
+                <tr>
+                  <th>Output MIME Type:</th>
+                  <td>{fileInfo.outputType}</td>
+                </tr>
+              </tbody>
+            </table>
 
-          <table className="table table-bordered table-striped mt-3">
-            <tbody>
-              <tr>
-                <th scope="row">Input Filename:</th>
-                <td>{fileInfo.name}</td>
-              </tr>
-              <tr>
-                <th scope="row">Input File Size:</th>
-                <td>{fileInfo.inputSize} KB</td>
-              </tr>
-              <tr>
-                <th scope="row">Output File Size:</th>
-                <td>{fileInfo.outputSize} KB</td>
-              </tr>
-              <tr>
-                <th scope="row">Input MIME Type:</th>
-                <td>{fileInfo.inputType}</td>
-              </tr>
-              <tr>
-                <th scope="row">Output MIME Type:</th>
-                <td>{fileInfo.outputType}</td>
-              </tr>
-            </tbody>
-          </table>
+            <div>
+              <h5>Base64 String:</h5>
+              <textarea
+                rows="10"
+                style={{ width: "100%", marginBottom: "10px" }}
+                readOnly
+                value={base64String}
+              />
+              <button
+                type="button"
+                onClick={copyToClipboard}
+                style={{
+                  width: "100%",
+                  padding: "10px 20px",
+                  backgroundColor: "#4CAF50",
+                  color: "white",
+                  border: "none",
+                }}
+              >
+                Copy to Clipboard
+              </button>
+            </div>
+          </div>
+        )}
 
-          <textarea
-            rows="10"
-            style={{ width: "100%" }}
-            readOnly
-            value={base64String}
-          />
-          <button
-            onClick={copyToClipboard}
-            style={{
-              marginTop: "10px",
-              padding: "10px 20px",
-              backgroundColor: "#007BFF",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            Copy to Clipboard
-          </button>
-        </>
-      )}
-    </div>
+        <div className="about-container" style={{ marginTop: "30px" }}>
+          <About mode={props.mode} />
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
+import About from './about/Base64ToZipAbout'; // Assuming you want the About section as well
 
 function Base64ToZipConverter(props) {
   const [base64String, setBase64String] = useState('');
@@ -59,6 +61,12 @@ function Base64ToZipConverter(props) {
 
   return (
     <div className="container mb-3" style={{ opacity: isDisabled ? 0.5 : 1, pointerEvents: isDisabled ? 'none' : 'auto' }}>
+      <Helmet>
+        <title>Base64 to ZIP Converter</title>
+        <meta name="description" content="Convert Base64 encoded data into ZIP files. Paste your Base64 string to generate and download ZIP files easily." />
+        <meta name="keywords" content="Base64 to ZIP, ZIP Converter, Base64 decoding, Download ZIP file" />
+      </Helmet>
+
       <h2 style={{ backgroundColor: props.mode === 'light' ? 'white' : '#21292C', color: props.mode === 'light' ? 'black' : 'white' }}>
         Base64 to ZIP Converter
       </h2>
@@ -91,20 +99,6 @@ function Base64ToZipConverter(props) {
         >
           {loading ? 'Generating...' : 'Generate ZIP'}
         </button>
-
-        {/* <button
-          onClick={downloadZip}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: zipReady ? '#4CAF50' : '#aaa',
-            color: 'white',
-            border: 'none',
-            cursor: zipReady ? 'pointer' : 'not-allowed',
-          }}
-          disabled={!zipReady}
-        >
-          Download ZIP
-        </button> */}
       </div>
 
       {loading && (
@@ -128,6 +122,10 @@ function Base64ToZipConverter(props) {
           </a>
         </div>
       )}
+
+      <div className="about-container">
+        <About mode={props.mode} />
+      </div>
     </div>
   );
 }

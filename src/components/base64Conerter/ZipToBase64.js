@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaFileArchive } from "react-icons/fa";
+import About from './about/ZipToBase64About'; // About page import
 
 function ZipToBase64Converter(props) {
   const [base64String, setBase64String] = useState("");
@@ -52,97 +53,119 @@ function ZipToBase64Converter(props) {
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "600px", margin: "auto" }}>
-      <h2
-        style={{
-          backgroundColor: props.mode === "light" ? "white" : "#21292C",
-          color: props.mode === "light" ? "black" : "white",
-        }}
-      >
-        ZIP File to Base64 Converter
-      </h2>
+    <>
+      <head>
+        <title>ZIP to Base64 Converter</title>
+        <meta
+          name="description"
+          content="Convert your ZIP files to Base64 encoded data with this simple converter."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="ZIP to Base64 Converter" />
+        <meta
+          property="og:description"
+          content="Convert your ZIP files to Base64 encoded data easily."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.example.com/zip-to-base64" />
+      </head>
 
-      <input
-        type="file"
-        id="zip-upload"
-        style={{ display: "none" }}
-        onChange={handleFileUpload}
-        accept=".zip"
-      />
+      <div className="container mb-3">
+        <h1
+          style={{
+            backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
+            color: props.mode === 'light' ? 'black' : 'white',
+          }}
+        >
+          ZIP to Base64 Converter
+        </h1>
 
-      <label
-        htmlFor="zip-upload"
-        style={{
-          border: "2px dashed #ccc",
-          padding: "40px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          borderRadius: "6px",
-          backgroundColor: "#fafafa",
-        }}
-      >
-        <FaFileArchive size={40} color="#888" />
-        <p style={{ margin: "10px 0 4px" }}>Drag or Upload your ZIP file</p>
-        <small>Only .zip files are allowed (Max 20 MB)</small>
-      </label>
-
-      {base64String && fileInfo && (
-        <>
-          <h4
-            style={{
-              backgroundColor: props.mode === "light" ? "white" : "#21292C",
-              color: props.mode === "light" ? "black" : "white",
-            }}
-          >
-            Base64 of: {fileInfo.name}
-          </h4>
-
-          <table className="table table-bordered table-striped mt-3">
-            <tbody>
-              <tr>
-                <th scope="row">Filename:</th>
-                <td>{fileInfo.name}</td>
-              </tr>
-              <tr>
-                <th scope="row">File Size:</th>
-                <td>{fileInfo.size} KB</td>
-              </tr>
-              <tr>
-                <th scope="row">Base64 Size:</th>
-                <td>{fileInfo.outputSize} KB</td>
-              </tr>
-              <tr>
-                <th scope="row">MIME Type:</th>
-                <td>{fileInfo.type}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <textarea
-            rows="10"
-            style={{ width: "100%" }}
-            readOnly
-            value={base64String}
+        <div>
+          <input
+            type="file"
+            accept=".zip"
+            id="zip-upload"
+            style={{ display: 'none' }}
+            onChange={handleFileUpload}
           />
-          <button
-            onClick={copyToClipboard}
+          <label
+            htmlFor="zip-upload"
             style={{
-              marginTop: "10px",
-              padding: "10px 20px",
-              backgroundColor: "#007BFF",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
+              border: '2px dashed #ccc',
+              padding: '40px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              borderRadius: '6px',
+              backgroundColor: '#fafafa',
             }}
           >
-            Copy to Clipboard
-          </button>
-        </>
-      )}
-    </div>
+            <FaFileArchive size={40} color="#888" />
+            <p style={{ margin: '10px 0 4px' }}>Drag or Upload your ZIP file</p>
+            <small>Only .ZIP format supported (Max 20 MB)</small>
+          </label>
+        </div>
+
+        {base64String && fileInfo && (
+          <>
+            <h4
+              style={{
+                backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
+                color: props.mode === 'light' ? 'black' : 'white',
+              }}
+            >
+              Base64 String of: {fileInfo.name}
+            </h4>
+            <table className="table table-bordered table-striped mt-3">
+              <tbody>
+                <tr>
+                  <th scope="row">Filename:</th>
+                  <td>{fileInfo.name}</td>
+                </tr>
+                <tr>
+                  <th scope="row">File Size:</th>
+                  <td>{fileInfo.size} KB</td>
+                </tr>
+                <tr>
+                  <th scope="row">Base64 Size:</th>
+                  <td>{fileInfo.outputSize} KB</td>
+                </tr>
+                <tr>
+                  <th scope="row">MIME Type:</th>
+                  <td>{fileInfo.type}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <textarea
+              rows="10"
+              style={{ width: '100%' }}
+              readOnly
+              value={base64String}
+            />
+            <button
+              onClick={copyToClipboard}
+              style={{
+                marginTop: '10px',
+                padding: '10px 20px',
+                backgroundColor: '#007BFF',
+                color: 'white',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              Copy to Clipboard
+            </button>
+          </>
+        )}
+
+        <div className="about-container">
+          <About mode={props.mode} />
+        </div>
+      </div>
+    </>
   );
 }
 
