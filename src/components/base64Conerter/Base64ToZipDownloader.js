@@ -3,23 +3,19 @@ import React, { useState } from 'react';
 function Base64ToZipConverter(props) {
   const [base64String, setBase64String] = useState('');
   const [zipBlobUrl, setZipBlobUrl] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [zipReady, setZipReady] = useState(false);
 
-  // Clean the Base64 string
   const cleanBase64 = (input) => {
     if (!input) return '';
     let base64 = input.trim();
-
     if (base64.includes(',')) {
       base64 = base64.split(',')[1];
     }
-
     try {
       base64 = decodeURIComponent(base64);
     } catch (_) {}
-
-    base64 = base64.replace(/[^A-Za-z0-9+/=]/g, '');
-
-    return base64;
+    return base64.replace(/[^A-Za-z0-9+/=]/g, '');
   };
 
   const previewZip = () => {
@@ -28,53 +24,42 @@ function Base64ToZipConverter(props) {
       return;
     }
 
-    const cleanedBase64 = cleanBase64(base64String);
+    setLoading(true);
+    setZipReady(false);
 
-    try {
-      const byteCharacters = atob(cleanedBase64);
-      const byteArray = new Uint8Array([...byteCharacters].map(c => c.charCodeAt(0)));
-      const blob = new Blob([byteArray], { type: 'application/zip' });
-      const url = URL.createObjectURL(blob);
-      setZipBlobUrl(url);
-    } catch (error) {
-      console.error('Error decoding Base64:', error);
-      props.showAlert("Invalid or corrupted Base64 data!", "danger");
-    }
+    setTimeout(() => {
+      const cleanedBase64 = cleanBase64(base64String);
+      try {
+        const byteCharacters = atob(cleanedBase64);
+        const byteArray = new Uint8Array([...byteCharacters].map(c => c.charCodeAt(0)));
+        const blob = new Blob([byteArray], { type: 'application/zip' });
+        const url = URL.createObjectURL(blob);
+        setZipBlobUrl(url);
+        setZipReady(true);
+      } catch (error) {
+        console.error('Error decoding Base64:', error);
+        props.showAlert("Invalid or corrupted Base64 data!", "danger");
+      } finally {
+        setLoading(false);
+      }
+    }, 1000); // simulate processing delay
   };
 
   const downloadZip = () => {
-    if (!base64String) {
-      props.showAlert("Please paste a Base64 string!", "danger");
-      return;
-    }
-
-    const cleanedBase64 = cleanBase64(base64String);
-
-    try {
-      const byteCharacters = atob(cleanedBase64);
-      const byteArray = new Uint8Array([...byteCharacters].map(c => c.charCodeAt(0)));
-      const blob = new Blob([byteArray], { type: 'application/zip' });
-
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'downloaded.zip';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error('Error decoding Base64:', error);
-      props.showAlert("Invalid or corrupted Base64 data!", "danger");
-    }
+    if (!zipBlobUrl) return;
+    const link = document.createElement('a');
+    link.href = zipBlobUrl;
+    link.download = 'downloaded.zip';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
+  const isDisabled = loading;
+
   return (
-    <div className="container mb-3">
-      <h2
-        style={{
-          backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
-          color: props.mode === 'light' ? 'black' : 'white',
-        }}
-      >
+    <div className="container mb-3" style={{ opacity: isDisabled ? 0.5 : 1, pointerEvents: isDisabled ? 'none' : 'auto' }}>
+      <h2 style={{ backgroundColor: props.mode === 'light' ? 'white' : '#21292C', color: props.mode === 'light' ? 'black' : 'white' }}>
         Base64 to ZIP Converter
       </h2>
 
@@ -86,7 +71,9 @@ function Base64ToZipConverter(props) {
         onChange={(e) => {
           setBase64String(e.target.value);
           setZipBlobUrl('');
+          setZipReady(false);
         }}
+        disabled={loading}
       />
 
       <div style={{ marginTop: '10px' }}>
@@ -100,33 +87,36 @@ function Base64ToZipConverter(props) {
             marginRight: '10px',
             cursor: 'pointer',
           }}
+          disabled={loading}
         >
-          Generate ZIP
+          {loading ? 'Generating...' : 'Generate ZIP'}
         </button>
 
-        <button
+        {/* <button
           onClick={downloadZip}
           style={{
             padding: '10px 20px',
-            backgroundColor: '#4CAF50',
+            backgroundColor: zipReady ? '#4CAF50' : '#aaa',
             color: 'white',
             border: 'none',
-            cursor: 'pointer',
+            cursor: zipReady ? 'pointer' : 'not-allowed',
           }}
+          disabled={!zipReady}
         >
           Download ZIP
-        </button>
+        </button> */}
       </div>
 
-      {zipBlobUrl && (
+      {loading && (
+        <div style={{ marginTop: '15px' }}>
+          <div className="spinner-border text-primary" role="status"></div> Generating ZIP...
+        </div>
+      )}
+
+      {zipReady && !loading && (
         <div style={{ marginTop: '20px' }}>
-          <h3
-            style={{
-              backgroundColor: props.mode === 'light' ? 'white' : '#21292C',
-              color: props.mode === 'light' ? 'black' : 'white',
-            }}
-          >
-            ZIP File Ready:
+          <h3 style={{ backgroundColor: props.mode === 'light' ? 'white' : '#21292C', color: props.mode === 'light' ? 'black' : 'white' }}>
+            ZIP is ready to be downloaded
           </h3>
           <a
             href={zipBlobUrl}

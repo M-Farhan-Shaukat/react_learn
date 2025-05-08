@@ -43,9 +43,13 @@ function NavBar(props) {
       className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
     >
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-          {props.title}
-        </Link>
+      <Link className="navbar-brand" to="/">
+  <img
+    src="/images/icons/favicon-32x32.png"
+    alt="Logo"
+    style={{ height: "40px", objectFit: "contain" }}
+  />
+</Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -80,6 +84,11 @@ function NavBar(props) {
                 {props.NavHeadings.base64tozip}
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/base64-media">
+                {props.NavHeadings.base64tomedia}
+              </Link>
+            </li>
 
             <li className="nav-item">
               <Link className="nav-link" to="/pdf-base64">
@@ -88,14 +97,13 @@ function NavBar(props) {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/media-base64">
-                {props.NavHeadings.mediatobase64}
+              <Link className="nav-link" to="/zip-base64">
+                {props.NavHeadings.ziptobase64}
               </Link>
             </li>
-
             <li className="nav-item">
-              <Link className="nav-link" to="/base64-media">
-                {props.NavHeadings.base64tomedia}
+              <Link className="nav-link" to="/media-base64">
+                {props.NavHeadings.mediatobase64}
               </Link>
             </li>
 
@@ -109,6 +117,7 @@ function NavBar(props) {
                 {props.NavHeadings.texttospeech}
               </Link>
             </li>
+
             <li className="nav-item">
               <Link className="nav-link" to="/about">
                 {props.NavHeadings.about}
