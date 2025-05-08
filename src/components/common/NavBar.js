@@ -111,12 +111,13 @@ function NavBar(props) {
               <Link className="nav-link" to="/video-audio">
                 {props.NavHeadings.videotoaudio}
               </Link>
-            </li> */}
+            </li> 
+            
             <li className="nav-item">
               <Link className="nav-link" to="/text-speech">
                 {props.NavHeadings.texttospeech}
               </Link>
-            </li>
+            </li> */}
 
             <li className="nav-item">
               <Link className="nav-link" to="/about">
