@@ -43,13 +43,13 @@ function NavBar(props) {
       className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
     >
       <div className="container-fluid">
-      <Link className="navbar-brand" to="/">
-  <img
-    src="/images/icons/favicon-32x32.png"
-    alt="Logo"
-    style={{ height: "40px", objectFit: "contain" }}
-  />
-</Link>
+        <Link className="navbar-brand" to="/">
+          <img
+            src="/images/icons/favicon-32x32.png"
+            alt="Logo"
+            style={{ height: "40px", objectFit: "contain" }}
+          />
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -119,7 +119,7 @@ function NavBar(props) {
               </Link>
             </li> */}
 
-<li className="nav-item">
+            <li className="nav-item">
               <Link className="nav-link" to="/image-convert">
                 {props.NavHeadings.imageconvert}
               </Link>

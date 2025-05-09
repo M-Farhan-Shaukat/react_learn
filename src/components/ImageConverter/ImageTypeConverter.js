@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaFileImage } from 'react-icons/fa';
+import About from './About'; // Import About component
 
 function ImageConverter(props) {
   const [file, setFile] = useState(null);
@@ -166,6 +167,10 @@ function ImageConverter(props) {
           </div>
         )}
       </div>
+
+      <div className="about-media-container" style={{ marginTop: "30px" }}>
+          <About mode={props.mode} />
+        </div>
     </>
   );
 }
