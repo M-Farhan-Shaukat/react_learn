@@ -16,6 +16,8 @@ import VideoToAudioConverter from "./components/MediaConverter/VideoToAudioConve
 import TextToSpeech from "./components/textUtils/TextToSpeech";
 import Base64ToZipDownloader from "./components/base64Conerter/Base64ToZipDownloader";
 import ZipToBase64Converter from "./components/base64Conerter/ZipToBase64";
+import ImageConverter from "./components/ImageConverter/ImageTypeConverter";
+
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -53,6 +55,7 @@ function App() {
     base64tomedia: "Base64 to Media",
     videotoaudio: "Video to MP3",
     texttospeech: "Text To Speech",
+    imageconvert: "Convert Image",
   };
 
   return (
@@ -89,6 +92,7 @@ function App() {
           <Route exact path="/text-speech" element={<TextToSpeech showAlert={showAlert}  mode={mode}/>} />
           <Route exact path="/base64-zip" element={<Base64ToZipDownloader showAlert={showAlert}  mode={mode}/>} />
           <Route exact path="/zip-base64" element={<ZipToBase64Converter showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/image-convert" element={<ImageConverter showAlert={showAlert}  mode={mode}/>} />
       
         </Routes>
       </div>

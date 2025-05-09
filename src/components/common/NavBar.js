@@ -119,6 +119,12 @@ function NavBar(props) {
               </Link>
             </li> */}
 
+<li className="nav-item">
+              <Link className="nav-link" to="/image-convert">
+                {props.NavHeadings.imageconvert}
+              </Link>
+            </li>
+
             <li className="nav-item">
               <Link className="nav-link" to="/about">
                 {props.NavHeadings.about}
