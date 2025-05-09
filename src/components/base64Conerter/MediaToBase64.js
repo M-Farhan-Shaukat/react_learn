@@ -36,7 +36,12 @@ function MediaToBase64Converter(props) {
     // Validate file size
     const fileSizeMB = file.size / (1024 * 1024);
     if (fileSizeMB > MAX_FILE_SIZE_MB) {
-      props.showAlert(`File is too large (${fileSizeMB.toFixed(2)} MB). Max allowed is 20 MB.`, "warning");
+      props.showAlert(
+        `File is too large (${fileSizeMB.toFixed(
+          2
+        )} MB). Max allowed is 20 MB.`,
+        "warning"
+      );
       return;
     }
 
@@ -71,8 +76,38 @@ function MediaToBase64Converter(props) {
   return (
     <>
       <head>
-        <title>Media File to Base64 Converter</title>
-        <meta name="description" content="Convert your media files to Base64 encoding quickly and easily. Preview and download the Base64 data." />
+        <title>
+          Media to Base64 Converter – Convert Images, Audio, Video, PDF
+        </title>
+        <meta
+          name="description"
+          content="Convert media files like images, audio, video, and PDFs to Base64 encoding easily. Secure, fast, and browser-based media to Base64 converter."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Media to Base64 Converter" />
+        <meta
+          property="og:description"
+          content="Convert your image, audio, video, or PDF file to Base64 format in seconds. Easy and free to use."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://www.convertpk.com/media-to-base64"
+        />
+        <meta
+          property="og:image"
+          content="https://www.convertpk.com/assets/media-to-base64.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Media to Base64 Converter" />
+        <meta
+          name="twitter:description"
+          content="Convert images, audio, video, and PDF files to Base64 quickly and easily."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.convertpk.com/assets/media-to-base64.jpg"
+        />
       </head>
 
       <div className="container mb-3">
@@ -86,34 +121,34 @@ function MediaToBase64Converter(props) {
           Media to Base64 Converter
         </h1>
 
-      <input
-        type="file"
-        id="media-upload"
-        style={{ display: "none" }}
-        onChange={handleFileUpload}
-        accept={SUPPORTED_TYPES.join(",")}
-      />
+        <input
+          type="file"
+          id="media-upload"
+          style={{ display: "none" }}
+          onChange={handleFileUpload}
+          accept={SUPPORTED_TYPES.join(",")}
+        />
 
-      <label
-        htmlFor="media-upload"
-        style={{
+        <label
+          htmlFor="media-upload"
+          style={{
             padding: "20px",
             border: "2px dashed #ccc",
-          padding: "40px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          borderRadius: "6px",
-          backgroundColor: "#fafafa",
+            padding: "40px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
             cursor: "pointer",
-        }}
-      >
-        <FaFileAlt size={40} color="#888" />
-        <p style={{ margin: "10px 0 4px" }}>Drag or Upload your media file</p>
-        <small>Supported types: Images, Audio, Video, PDF (Max 20 MB)</small>
-      </label>
+            borderRadius: "6px",
+            backgroundColor: "#fafafa",
+            cursor: "pointer",
+          }}
+        >
+          <FaFileAlt size={40} color="#888" />
+          <p style={{ margin: "10px 0 4px" }}>Drag or Upload your media file</p>
+          <small>Supported types: Images, Audio, Video, PDF (Max 20 MB)</small>
+        </label>
 
         {base64String && fileInfo && (
           <div className="file-info mt-4">

@@ -85,14 +85,14 @@ function App() {
           <Route exact path="/users" element={<UserTable mode={mode}/>} />
           <Route exact path="/create-user" element={<UserForm mode={mode}/>} />
 
-          <Route exact path="/base64-pdf" element={<Base64ToPdfConverter showAlert={showAlert}  mode={mode}/>} />
-          <Route exact path="/pdf-base64" element={<PdfToBase64Converter showAlert={showAlert}  mode={mode}/>} />
-          <Route exact path="/base64-media" element={<Base64ToMediaConverter showAlert={showAlert}  mode={mode}/>} />
-          <Route exact path="/media-base64" element={<MediaToBase64Converter showAlert={showAlert}  mode={mode}/>} />
-          <Route exact path="/video-audio" element={<VideoToAudioConverter showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/base64-to-pdf" element={<Base64ToPdfConverter showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/pdf-to-base64" element={<PdfToBase64Converter showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/base64-to-media" element={<Base64ToMediaConverter showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/media-to-base64" element={<MediaToBase64Converter showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/video-to-audio" element={<VideoToAudioConverter showAlert={showAlert}  mode={mode}/>} />
           <Route exact path="/text-speech" element={<TextToSpeech showAlert={showAlert}  mode={mode}/>} />
-          <Route exact path="/base64-zip" element={<Base64ToZipDownloader showAlert={showAlert}  mode={mode}/>} />
-          <Route exact path="/zip-base64" element={<ZipToBase64Converter showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/base64-to-zip" element={<Base64ToZipDownloader showAlert={showAlert}  mode={mode}/>} />
+          <Route exact path="/zip-to-base64" element={<ZipToBase64Converter showAlert={showAlert}  mode={mode}/>} />
           <Route exact path="/image-convert" element={<ImageConverter showAlert={showAlert}  mode={mode}/>} />
       
         </Routes>

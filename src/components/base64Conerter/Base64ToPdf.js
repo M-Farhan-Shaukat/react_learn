@@ -78,8 +78,8 @@ function Base64ToPdfConverter(props) {
           content="Convert Base64 encoded data to PDF with this simple and free converter. Paste your Base64 string and get your PDF instantly."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.example.com/base64-to-pdf" />
-        <meta property="og:image" content="https://www.example.com/path-to-image.jpg" />
+        <meta property="og:url" content="https://www.convertpk.com//base64-to-pdf" />
+        <meta property="og:image" content="https://www.convertpk.com//path-to-image.jpg" />
       </head>
 
       <div className="container mb-3">

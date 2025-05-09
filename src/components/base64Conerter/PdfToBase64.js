@@ -45,7 +45,7 @@ function PdfToBase64Converter(props) {
           content="Convert your PDF files to Base64 encoded data easily."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.example.com/pdf-to-base64" />
+        <meta property="og:url" content="https://www.convertpk.com//pdf-to-base64" />
       </head>
 
       <div className="container mb-3">

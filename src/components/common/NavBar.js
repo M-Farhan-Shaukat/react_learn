@@ -80,8 +80,8 @@ function NavBar(props) {
 
             <li className="nav-item">
               <Link
-                className={`nav-link ${isActive("/base64-pdf") ? "active" : ""}`}
-                to="/base64-pdf"
+                className={`nav-link ${isActive("/base64-to-pdf") ? "active" : ""}`}
+                to="/base64-to-pdf"
               >
                 {props.NavHeadings.base64topdf}
               </Link>
@@ -89,8 +89,8 @@ function NavBar(props) {
 
             <li className="nav-item">
               <Link
-                className={`nav-link ${isActive("/base64-zip") ? "active" : ""}`}
-                to="/base64-zip"
+                className={`nav-link ${isActive("/base64-to-zip") ? "active" : ""}`}
+                to="/base64-to-zip"
               >
                 {props.NavHeadings.base64tozip}
               </Link>
@@ -98,8 +98,8 @@ function NavBar(props) {
 
             <li className="nav-item">
               <Link
-                className={`nav-link ${isActive("/base64-media") ? "active" : ""}`}
-                to="/base64-media"
+                className={`nav-link ${isActive("/base64-to-media") ? "active" : ""}`}
+                to="/base64-to-media"
               >
                 {props.NavHeadings.base64tomedia}
               </Link>
@@ -107,8 +107,8 @@ function NavBar(props) {
 
             <li className="nav-item">
               <Link
-                className={`nav-link ${isActive("/pdf-base64") ? "active" : ""}`}
-                to="/pdf-base64"
+                className={`nav-link ${isActive("/pdf-to-base64") ? "active" : ""}`}
+                to="/pdf-to-base64"
               >
                 {props.NavHeadings.pdftobase64}
               </Link>
@@ -116,16 +116,16 @@ function NavBar(props) {
 
             <li className="nav-item">
               <Link
-                className={`nav-link ${isActive("/zip-base64") ? "active" : ""}`}
-                to="/zip-base64"
+                className={`nav-link ${isActive("/zip-to-base64") ? "active" : ""}`}
+                to="/zip-to-base64"
               >
                 {props.NavHeadings.ziptobase64}
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className={`nav-link ${isActive("/media-base64") ? "active" : ""}`}
-                to="/media-base64"
+                className={`nav-link ${isActive("/media-to-base64") ? "active" : ""}`}
+                to="/media-to-base64"
               >
                 {props.NavHeadings.mediatobase64}
               </Link>

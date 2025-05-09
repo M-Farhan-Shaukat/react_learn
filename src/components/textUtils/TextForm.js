@@ -118,13 +118,50 @@ function TextForm(props) {
     .split(/\s+/)
     .filter((word) => word !== "").length;
 
-    function countSentences(text) {
-      // Regular expression to match sentence-ending punctuation (. ! ?)
-      const sentences = text.split(/[.!?]+/).filter(Boolean);
-      return sentences.length;
+  function countSentences(text) {
+    // Regular expression to match sentence-ending punctuation (. ! ?)
+    const sentences = text.split(/[.!?]+/).filter(Boolean);
+    return sentences.length;
   }
   return (
     <>
+      <head>
+        <title>
+          Character Counter - Count Characters, Words, and Sentences Online
+        </title>
+        <meta
+          name="description"
+          content="Count characters, words, and sentences easily using our online character counter tool. Perfect for writing, SEO, and social media."
+        />
+        <meta name="robots" content="index, follow" />
+
+        <meta property="og:title" content="Character Counter" />
+        <meta
+          property="og:description"
+          content="Use our free online character counter to count characters, words, and sentences quickly. Ideal for writers, SEO, and social media posts."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://www.convertpk.com/character-counter"
+        />
+        <meta
+          property="og:image"
+          content="https://www.convertpk.com/assets/images/character-counter-og.jpg"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Character Counter" />
+        <meta
+          name="twitter:description"
+          content="Quickly count characters, words, and sentences with our free online character counter tool. Perfect for SEO, writing, and social media."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.convertpk.com/assets/images/character-counter-og.jpg"
+        />
+      </head>
+
       <div
         className=" container mb-3"
         style={{
@@ -229,10 +266,7 @@ function TextForm(props) {
 
             <div className="stat">
               <span>SENTENCES</span>
-              <span>
-                {" "}
-               {countSentences(text)}
-              </span>
+              <span> {countSentences(text)}</span>
             </div>
             <div className="stat">
               <span>PARAGRAPHS</span>

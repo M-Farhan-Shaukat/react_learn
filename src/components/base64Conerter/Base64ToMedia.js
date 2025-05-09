@@ -92,8 +92,8 @@ function Base64ToMediaConverter(props) {
         <meta property="og:title" content="Base64 to Media Converter" />
         <meta property="og:description" content="Convert Base64 encoded data to media formats like image, audio, video, or PDF." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.example.com/base64-to-media" />
-        <meta property="og:image" content="https://www.example.com/path-to-image.jpg" />
+        <meta property="og:url" content="https://www.convertpk.com//base64-to-media" />
+        <meta property="og:image" content="https://www.convertpk.com//path-to-image.jpg" />
       </head>
 
       <div className="container mb-3">
