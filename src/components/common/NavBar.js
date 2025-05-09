@@ -142,6 +142,15 @@ function NavBar(props) {
 
             <li className="nav-item">
               <Link
+                className={`nav-link ${isActive("/image-convert") ? "active" : ""}`}
+                to="/image-convert"
+              >
+                {props.NavHeadings.videotoaudio}
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
                 className={`nav-link ${isActive("/about") ? "active" : ""}`}
                 to="/about"
               >
