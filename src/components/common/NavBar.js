@@ -38,10 +38,11 @@ function NavBar(props) {
     closeNavbar();
   }, [location]);
 
+  // Helper function to check if the link is active
+  const isActive = (path) => location.pathname === path;
+
   return (
-    <nav
-      className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
-    >
+    <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img
@@ -68,65 +69,82 @@ function NavBar(props) {
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link
+                className={`nav-link ${isActive("/") ? "active" : ""}`}
+                aria-current="page"
+                to="/"
+              >
                 {props.NavHeadings.home}
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/base64-pdf">
+              <Link
+                className={`nav-link ${isActive("/base64-pdf") ? "active" : ""}`}
+                to="/base64-pdf"
+              >
                 {props.NavHeadings.base64topdf}
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/base64-zip">
+              <Link
+                className={`nav-link ${isActive("/base64-zip") ? "active" : ""}`}
+                to="/base64-zip"
+              >
                 {props.NavHeadings.base64tozip}
               </Link>
             </li>
+
             <li className="nav-item">
-              <Link className="nav-link" to="/base64-media">
+              <Link
+                className={`nav-link ${isActive("/base64-media") ? "active" : ""}`}
+                to="/base64-media"
+              >
                 {props.NavHeadings.base64tomedia}
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/pdf-base64">
+              <Link
+                className={`nav-link ${isActive("/pdf-base64") ? "active" : ""}`}
+                to="/pdf-base64"
+              >
                 {props.NavHeadings.pdftobase64}
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/zip-base64">
+              <Link
+                className={`nav-link ${isActive("/zip-base64") ? "active" : ""}`}
+                to="/zip-base64"
+              >
                 {props.NavHeadings.ziptobase64}
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/media-base64">
+              <Link
+                className={`nav-link ${isActive("/media-base64") ? "active" : ""}`}
+                to="/media-base64"
+              >
                 {props.NavHeadings.mediatobase64}
               </Link>
             </li>
 
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/video-audio">
-                {props.NavHeadings.videotoaudio}
-              </Link>
-            </li> 
-            
             <li className="nav-item">
-              <Link className="nav-link" to="/text-speech">
-                {props.NavHeadings.texttospeech}
-              </Link>
-            </li> */}
-
-            <li className="nav-item">
-              <Link className="nav-link" to="/image-convert">
+              <Link
+                className={`nav-link ${isActive("/image-convert") ? "active" : ""}`}
+                to="/image-convert"
+              >
                 {props.NavHeadings.imageconvert}
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/about">
+              <Link
+                className={`nav-link ${isActive("/about") ? "active" : ""}`}
+                to="/about"
+              >
                 {props.NavHeadings.about}
               </Link>
             </li>

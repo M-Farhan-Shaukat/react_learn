@@ -6,6 +6,12 @@
   height: 40vmin;
   pointer-events: none;
 }
+/* Style for active link */
+.navbar-nav .nav-link.active {
+  font-weight: bold;
+  color: #8eb6bd; /* Or any color you prefer */
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: 20s linear infinite App-logo-spin;
